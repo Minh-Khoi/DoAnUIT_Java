@@ -5,17 +5,43 @@
  */
 package uit.team.forms;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import uit.team.QLPhieuMuonJFrame11;
+
 /**
  *
  * @author USER
  */
 public class FormPhieuMuon extends javax.swing.JFrame {
+    private boolean modifyMode = false;
 
     /**
      * Creates new form FormPhieuMuon
      */
     public FormPhieuMuon() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText("Thêm Phiếu Mượn");
+        setFunctionClose();
+    }
+
+    public FormPhieuMuon(boolean modifyMode_) {
+        initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText("Chỉnh sửa Phiếu Mượn");
+        this.modifyMode = modifyMode_;
+        setFunctionClose();
+    }
+    
+    private void setFunctionClose(){
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e) {
+                new QLPhieuMuonJFrame11().setVisible(true);
+            }
+        });
     }
 
     /**

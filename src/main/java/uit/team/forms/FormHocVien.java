@@ -5,19 +5,45 @@
  */
 package uit.team.forms;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import uit.team.QLHocVienJFrame;
+
 /**
  *
  * @author USER
  */
 public class FormHocVien extends javax.swing.JFrame {
-
+    private boolean modifyMode = false;
     /**
      * Creates new form FormHocVien
      */
     public FormHocVien() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText("Thêm Học viên");
+        setFunctionClose();
     }
 
+    public FormHocVien(boolean modifyMode_) {
+        initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText("Chỉnh sửa Học viên");
+        this.modifyMode = modifyMode_;
+        setFunctionClose();
+    }
+
+    
+    private void setFunctionClose(){
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e) {
+                new QLHocVienJFrame().setVisible(true);
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

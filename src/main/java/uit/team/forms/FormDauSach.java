@@ -5,6 +5,11 @@
  */
 package uit.team.forms;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import uit.team.QLDauSachJFrame1;
+
 /**
  *
  * @author USER
@@ -16,14 +21,28 @@ public class FormDauSach extends javax.swing.JFrame {
      */
     public FormDauSach() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         titleLabel1.setText("Thêm Đầu Sách");
         this.modifyMode = false;
+        setFunctionClose();
+
     }
     
-    public FormDauSach(boolean modifyMode) {
+    public FormDauSach(boolean modifyMode_) {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         titleLabel1.setText("Chỉnh sửa Đầu Sách");
-        this.modifyMode = true;
+        this.modifyMode = modifyMode_;
+        setFunctionClose();
+    }
+    
+    private void setFunctionClose(){
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e) {
+                new QLDauSachJFrame1().setVisible(true);
+            }
+        });
     }
 
     /**

@@ -220,6 +220,21 @@ public class SachDAO {
         return 0;
     }
     
+    
+    public static int deleteByDauSach(String maDauSach){
+        connectDB();
+        String sql = "DELETE FROM SACH WHERE MADAUSACH=? ";
+        try(PreparedStatement preStmt = conn.prepareStatement(sql)) {
+            preStmt.setString(1, maDauSach );
+            int deleted = preStmt.executeUpdate();
+            System.out.println("Delete " +deleted+ " record(s) successfully ");
+            return deleted;
+        } catch (SQLException ex) {
+            Logger.getLogger(DauSachDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
 //    public static void main(String[] args) {
 //        String maSach="BK011";
 //        String tenSach="MInh Khôi VĨ Đại";

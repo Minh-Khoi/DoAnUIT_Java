@@ -199,6 +199,20 @@ public class PhieuMuonDAO {
         }
         return 0;
     }
+    
+    public static int deleteByHocVien(String maHV){
+        connectDB();
+        String sql = "DELETE FROM PHIEUMUON WHERE MAHV=? ";
+        try(PreparedStatement preStmt = conn.prepareStatement(sql)) {
+            preStmt.setString(1, maHV );
+            int deleted = preStmt.executeUpdate();
+            System.out.println("Delete " +deleted+ " record(s) successfully ");
+            return deleted;
+        } catch (SQLException ex) {
+            Logger.getLogger(DauSachDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 //    
 //    public static void main(String[] args) {
 //        String maPhieu="PM005";

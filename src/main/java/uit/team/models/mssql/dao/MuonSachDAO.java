@@ -162,6 +162,21 @@ public class MuonSachDAO {
     }
     
     
+    public static int deleteByForeignKey(String key, String value){
+        connectDB();
+        String sql = "DELETE FROM MUONSACH WHERE <key>=? ".replaceAll("<key>", key);
+        try(PreparedStatement preStmt = conn.prepareStatement(sql)) {
+            preStmt.setString(1, value );
+            int deleted = preStmt.executeUpdate();
+            System.out.println("Delete " +deleted+ " record(s) successfully ");
+            return deleted;
+        } catch (SQLException ex) {
+            Logger.getLogger(DauSachDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    
 //    public static void main(String[] args) {
 //        String maPhieu = "PM001";
 //        String maSach = "BK001";

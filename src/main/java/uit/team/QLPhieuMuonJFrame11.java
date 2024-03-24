@@ -2,6 +2,9 @@ package uit.team;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import uit.team.forms.DeleteForm;
+import uit.team.forms.FormPhieuMuon;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,17 +17,21 @@ import java.awt.event.WindowEvent;
  * @author USER
  */
 public class QLPhieuMuonJFrame11 extends javax.swing.JFrame {
+    public boolean returnHomeFrame = true;
 
     /**
      * Creates new form QLSachJFrame
      */
     public QLPhieuMuonJFrame11() {
         initComponents();
-        setDefaultCloseOperation(HomeFrame.DISPOSE_ON_CLOSE) ;
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosed(WindowEvent e) {
-                new HomeFrame().setVisible(true);
+                QLPhieuMuonJFrame11 targ = (QLPhieuMuonJFrame11)e.getComponent();
+                if (targ.returnHomeFrame){
+                    new HomeFrame().setVisible(true);                    
+                }
             }
         });
     }
@@ -124,14 +131,26 @@ public class QLPhieuMuonJFrame11 extends javax.swing.JFrame {
 
     private void insertActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionActionPerformed
         // TODO add your handling code here:
+        JFrame form = new FormPhieuMuon();
+        form.setVisible(true);
+        this.returnHomeFrame = false;
+        this.dispose();
     }//GEN-LAST:event_insertActionActionPerformed
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
+        JFrame form = new FormPhieuMuon(true);
+        form.setVisible(true);
+        this.returnHomeFrame = false;
+        this.dispose();
     }//GEN-LAST:event_modifyActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
+        JFrame deleteForm = new DeleteForm(this);
+        deleteForm.setVisible(true);
+        this.returnHomeFrame = false;
+        this.dispose();
     }//GEN-LAST:event_deleteActionPerformed
 
     /**

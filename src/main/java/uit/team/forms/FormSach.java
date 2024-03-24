@@ -5,17 +5,43 @@
  */
 package uit.team.forms;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import uit.team.QLSachJFrame1;
+
 /**
  *
  * @author USER
  */
 public class FormSach extends javax.swing.JFrame {
+    private boolean modifyMode = false;
 
     /**
      * Creates new form FormSach
      */
     public FormSach() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText("Thêm Sách");
+        setFunctionClose();
+    }
+
+    public FormSach(boolean modifyMode_) {
+        initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText("Chỉnh sửa  Sách");
+        this.modifyMode = modifyMode_;
+        setFunctionClose();
+    }
+    
+    private void setFunctionClose(){
+        addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosed(WindowEvent e) {
+                new QLSachJFrame1().setVisible(true);
+            }
+        });
     }
 
     /**
