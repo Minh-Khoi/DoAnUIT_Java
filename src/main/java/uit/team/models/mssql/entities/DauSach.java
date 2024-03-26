@@ -9,7 +9,7 @@ package uit.team.models.mssql.entities;
  *
  * @author USER
  */
-public class DauSach {
+public class DauSach implements EntityInterface{
     String maDauSach;
     String tenDauSach;
 
@@ -40,6 +40,11 @@ public class DauSach {
     @Override
     public String toString() {
         return "DauSach{" + "maDauSach=" + maDauSach + ", tenDauSach=" + tenDauSach + '}';
+    }
+
+    @Override
+    public Object[] toPropertiesArray() {
+        return new Object[] {this.maDauSach,this.tenDauSach};
     }
     
     

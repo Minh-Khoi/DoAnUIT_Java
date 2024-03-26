@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author USER
  */
-public class PhieuMuon {
+public class PhieuMuon  implements EntityInterface{
     String maPhieu;
     Date ngayMuon;
     String maHV;
@@ -59,4 +59,8 @@ public class PhieuMuon {
         return sb.toString();
     }
     
+    @Override
+    public Object[] toPropertiesArray() {
+        return new Object[] {maPhieu,ngayMuon,maHV};
+    }
 }

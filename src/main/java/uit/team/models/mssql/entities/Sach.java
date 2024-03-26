@@ -9,7 +9,7 @@ package uit.team.models.mssql.entities;
  *
  * @author USER
  */
-public class Sach {
+public class Sach  implements EntityInterface{
     String maSach;
     String tenSach;
     String trangThai;
@@ -102,4 +102,8 @@ public class Sach {
     }
     
     
+    @Override
+    public Object[] toPropertiesArray() {
+        return new Object[] {maSach,tenSach,trangThai,soLuong,tenNXB,tenTG,maDauSach};
+    }
 }

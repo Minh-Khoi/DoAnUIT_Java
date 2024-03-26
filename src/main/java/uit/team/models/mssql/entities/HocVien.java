@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author USER
  */
-public class HocVien {
+public class HocVien  implements EntityInterface{
     String maHV;
     String tenHV;
     String soDT;
@@ -93,4 +93,8 @@ public class HocVien {
     }
     
     
+    @Override
+    public Object[] toPropertiesArray() {
+        return new Object[] {maHV,tenHV,soDT,ngaySinh,donVi,gioiTinh};
+    }
 }

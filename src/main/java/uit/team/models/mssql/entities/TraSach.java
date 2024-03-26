@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author USER
  */
-public class TraSach {
+public class TraSach  implements EntityInterface{
     private String maSach;
     private String maHV;
     private String trangThai;
@@ -70,4 +70,8 @@ public class TraSach {
         return sb.toString();
     }
     
+    @Override
+    public Object[] toPropertiesArray() {
+        return new Object[] {};
+    }
 }

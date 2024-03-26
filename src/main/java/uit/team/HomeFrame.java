@@ -33,6 +33,7 @@ public class HomeFrame extends javax.swing.JFrame {
         sachTab = new javax.swing.JButton();
         phieuMuonTab1 = new javax.swing.JButton();
         hocVienTab2 = new javax.swing.JButton();
+        dauSachTab2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,20 +61,28 @@ public class HomeFrame extends javax.swing.JFrame {
             }
         });
 
+        dauSachTab2.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        dauSachTab2.setText("Quản lý Đầu sách");
+        dauSachTab2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dauSachTab2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(hocVienTab2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(hocVienTab2, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addComponent(phieuMuonTab1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(sachTab, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sachTab, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                    .addComponent(dauSachTab2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(phieuMuonTab1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,7 +92,9 @@ public class HomeFrame extends javax.swing.JFrame {
                     .addComponent(sachTab, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(hocVienTab2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(phieuMuonTab1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phieuMuonTab1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dauSachTab2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -110,6 +121,13 @@ public class HomeFrame extends javax.swing.JFrame {
         qlFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_hocVienTab2ActionPerformed
+
+    private void dauSachTab2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dauSachTab2ActionPerformed
+        // TODO add your handling code here:
+        QLDauSachJFrame1 qlFrame = new QLDauSachJFrame1();
+        qlFrame.setVisible(true);
+        this.dispose();        
+    }//GEN-LAST:event_dauSachTab2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,6 +165,7 @@ public class HomeFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton dauSachTab2;
     private javax.swing.JButton hocVienTab2;
     private javax.swing.JButton phieuMuonTab1;
     private javax.swing.JButton sachTab;

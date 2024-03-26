@@ -72,6 +72,7 @@ public class FormSach extends javax.swing.JFrame {
         tenNxbTextField6 = new javax.swing.JTextField();
         tenTacGiaTextField8 = new javax.swing.JTextField();
         dauSachComboBox1 = new javax.swing.JComboBox<>();
+        actionDauSachButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,6 +128,13 @@ public class FormSach extends javax.swing.JFrame {
 
         dauSachComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        actionDauSachButton1.setText("Thêm/Sửa Đầu sách");
+        actionDauSachButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actionDauSachButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout maSachLayout = new javax.swing.GroupLayout(maSach);
         maSach.setLayout(maSachLayout);
         maSachLayout.setHorizontalGroup(
@@ -164,7 +172,11 @@ public class FormSach extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, maSachLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addComponent(titleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                        .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(maSachLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(actionDauSachButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         maSachLayout.setVerticalGroup(
             maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +223,8 @@ public class FormSach extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dauSachLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dauSachComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(dauSachComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(actionDauSachButton1))))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -222,9 +235,9 @@ public class FormSach extends javax.swing.JFrame {
             .addGap(0, 793, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 6, Short.MAX_VALUE)
                     .addComponent(maSach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 6, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,6 +263,10 @@ public class FormSach extends javax.swing.JFrame {
     private void modifyTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTabActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_modifyTabActionPerformed
+
+    private void actionDauSachButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionDauSachButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_actionDauSachButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,6 +304,7 @@ public class FormSach extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actionDauSachButton1;
     private javax.swing.JComboBox<String> dauSachComboBox1;
     private javax.swing.JLabel dauSachLabel;
     private javax.swing.JButton insertTab;

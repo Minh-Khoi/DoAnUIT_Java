@@ -2,9 +2,13 @@ package uit.team;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import uit.team.forms.DeleteForm;
 import uit.team.forms.FormDauSach;
+import uit.team.models.mssql.dao.DauSachDAO;
+import uit.team.models.mssql.entities.DauSach;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,8 +37,21 @@ public class QLDauSachJFrame1 extends javax.swing.JFrame {
                 }
             }
         });
+        initDatas();
     }
 
+    private void initDatas(){
+        DauSachDAO dausachDao = new DauSachDAO();
+        List<DauSach> list = dausachDao.readAll();
+        
+        String[] colsName = new String [] {"Mã đầu sách", "Tên đầu sách"};
+        DefaultTableModel model = new DefaultTableModel(colsName, 0);
+        for(DauSach instance : list){
+            model.addRow(instance.toPropertiesArray());
+        }
+        jTable1.setModel(model);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

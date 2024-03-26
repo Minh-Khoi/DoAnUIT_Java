@@ -11,7 +11,7 @@ import java.sql.Date;
  *
  * @author USER
  */
-public class MuonSach {
+public class MuonSach implements EntityInterface {
     String maPhieu;
     String maSach;
     String trangThai;
@@ -93,4 +93,8 @@ public class MuonSach {
     }
     
     
+    @Override
+    public Object[] toPropertiesArray() {
+        return new Object[] {};
+    }
 }
