@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -177,23 +178,12 @@ public class MuonSachDAO {
     }
     
     
+
 //    public static void main(String[] args) {
-//        String maPhieu = "PM001";
-//        String maSach = "BK001";
-//        String trangThai="Sách mới";
-//        Date ngayHenTra=Date.valueOf("2020-03-10");
-//        Date ngayTra= new Date(new java.util.Date().getTime());
-//        String trangThaiTra = "OK";
-//        MuonSach obj = new MuonSach(maPhieu, maSach, trangThai, ngayHenTra, ngayTra, trangThaiTra);
-//        insert(obj);
-//        update(obj);
-//        delete(maPhieu, maSach);
-//        obj.setMaPhieu("PM002");
-//        insert(obj);
-//        try {
-//            System.out.println( "Connection is closed: " + conn.isClosed() );
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DauSachDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+//        String maPhieu="PM003";
+//        Map map = new HashMap();
+//        map.put("NGAYTRA", null);
+//        List<MuonSach> objs = readByCols(map);
+//        System.out.println(Objects.isNull(objs.get(0).getNgayTra()));
 //    }
 }

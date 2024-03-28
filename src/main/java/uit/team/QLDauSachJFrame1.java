@@ -41,8 +41,7 @@ public class QLDauSachJFrame1 extends javax.swing.JFrame {
     }
 
     private void initDatas(){
-        DauSachDAO dausachDao = new DauSachDAO();
-        List<DauSach> list = dausachDao.readAll();
+        List<DauSach> list = DauSachDAO.readAll();
         
         String[] colsName = new String [] {"Mã đầu sách", "Tên đầu sách"};
         DefaultTableModel model = new DefaultTableModel(colsName, 0);

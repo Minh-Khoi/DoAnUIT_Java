@@ -2,9 +2,13 @@ package uit.team;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import uit.team.forms.DeleteForm;
 import uit.team.forms.FormHocVien;
+import uit.team.models.mssql.dao.HocVienDAO;
+import uit.team.models.mssql.entities.HocVien;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,6 +38,18 @@ public class QLHocVienJFrame extends javax.swing.JFrame {
                 }
             }
         });
+        initDatas();
+    }
+    private void initDatas(){
+//        HocVienDAO dao = new HocVienDAO();
+        List<HocVien> list = HocVienDAO.readAll();
+        
+        String[] colsName = new String [] {"Mã học viên", "Tên học viên","Số điện thoại","ngày sinh","đơn vị", "giới tính"};
+        DefaultTableModel model = new DefaultTableModel(colsName, 0);
+        for(HocVien instance : list){
+            model.addRow(instance.toPropertiesArray());
+        }
+        jTable1.setModel(model);
     }
 
     /**

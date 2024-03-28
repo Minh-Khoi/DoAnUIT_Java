@@ -2,9 +2,13 @@ package uit.team;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import uit.team.forms.DeleteForm;
 import uit.team.forms.FormSach;
+import uit.team.models.mssql.dao.SachDAO;
+import uit.team.models.mssql.entities.Sach;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,7 +38,22 @@ public class QLSachJFrame1 extends javax.swing.JFrame {
                 }
             }
         });
+        initDatas();
     }
+    
+    private void initDatas(){
+//        SachDAO dao = new SachDAO();
+        List<Sach> list = SachDAO.readAll();
+        
+        String[] colsName = new String [] {"Mã sách","Tên sách","Trạng thái","Số lượng","Tên nhà xuất bản",
+                                            "Tên tác giả","Đầu sách"};
+        DefaultTableModel model = new DefaultTableModel(colsName, 0);
+        for(Sach instance : list){
+            model.addRow(instance.toPropertiesArray());
+        }
+        jTable1.setModel(model);
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

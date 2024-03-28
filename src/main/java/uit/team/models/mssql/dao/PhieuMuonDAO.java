@@ -97,9 +97,9 @@ public class PhieuMuonDAO {
             ResultSet res = preStmt.executeQuery();
             while (res.next()){
                 String maPhieu = res.getString("MAPHIEU");
-                Date ngayMuon = res.getDate("NGAYHENTRA");
-                String maSach = res.getString("MASACH");
-                PhieuMuon obj = new PhieuMuon(maPhieu, ngayMuon, maSach);
+                Date ngayMuon = res.getDate("NGAYMUON");
+                String mahv = res.getString("MAHV");
+                PhieuMuon obj = new PhieuMuon(maPhieu, ngayMuon, mahv);
                 return obj;
             }
         } catch (SQLException ex) {
@@ -115,10 +115,10 @@ public class PhieuMuonDAO {
         try(PreparedStatement preStmt = conn.prepareStatement(sql)) {
             ResultSet res = preStmt.executeQuery();
             while (res.next()){
-                String maPhieu = res.getNString("MAPHIEU");
-                Date ngayMuon = res.getDate("NGAYHENTRA");
-                String maSach = res.getString("MASACH");
-                PhieuMuon obj = new PhieuMuon(maPhieu, ngayMuon, maSach);
+                String maPhieu = res.getString("MAPHIEU");
+                Date ngayMuon = res.getDate("NGAYMUON");
+                String mahv = res.getString("MAHV");
+                PhieuMuon obj = new PhieuMuon(maPhieu, ngayMuon, mahv);
                 listObjs.add(obj);
             }
         } catch (SQLException ex) {
@@ -158,9 +158,9 @@ public class PhieuMuonDAO {
             ResultSet res = preStmt.executeQuery();
             while (res.next()){
                 String maPhieu = res.getString("MAPHIEU");
-                Date ngayMuon = res.getDate("NGAYHENTRA");
-                String maSach = res.getString("MASACH");
-                PhieuMuon obj = new PhieuMuon(maPhieu, ngayMuon, maSach);
+                Date ngayMuon = res.getDate("NGAYMUON");
+                String mahv = res.getString("MAHV");
+                PhieuMuon obj = new PhieuMuon(maPhieu, ngayMuon, mahv);
                 listObjs.add(obj);
             }
         } catch (SQLException ex) {

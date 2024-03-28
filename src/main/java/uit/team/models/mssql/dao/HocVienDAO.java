@@ -239,10 +239,10 @@ public class HocVienDAO {
 //    }
     
     
-    public static void main(String[] args) {
-        Map map = new HashMap<String, Object>();
-        map.put("DONVI", "Pru-Indo");
-        List<HocVien> listObjs = readByCols(map);
-        System.out.println(listObjs);
-    }
+//    public static void main(String[] args) {
+//        Map map = new HashMap<String, Object>();
+//        map.put("DONVI", "Pru-Indo");
+//        List<HocVien> listObjs = readByCols(map);
+//        System.out.println(listObjs);
+//    }
 }
