@@ -24,7 +24,7 @@ import uit.team.models.mssql.entities.PhieuMuon;
  *
  * @author USER
  */
-public class PhieuMuonDAO {
+public class PhieuMuonDAO  extends EntityDaoInterface{
     private static Connection conn;
     static void connectDB() {
         try {
@@ -149,7 +149,7 @@ public class PhieuMuonDAO {
             preStmt.setObject(index,value);
         }   
     }
-    public static List<PhieuMuon>  readByCols(Map<String, Object> colValue){
+    public static List  readByCols(Map<String, Object> colValue){
         connectDB();
         List<PhieuMuon> listObjs = new ArrayList<PhieuMuon>();
         String sql = "SELECT * FROM PHIEUMUON " + generateWhereClause(colValue);

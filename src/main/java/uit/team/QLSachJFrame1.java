@@ -5,7 +5,10 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import uit.team.controllers.QLController;
+import uit.team.controllers.QLSachController;
 import uit.team.forms.DeleteForm;
+import uit.team.forms.FormInsertUpdate;
 import uit.team.forms.FormSach;
 import uit.team.models.mssql.dao.SachDAO;
 import uit.team.models.mssql.entities.Sach;
@@ -20,8 +23,7 @@ import uit.team.models.mssql.entities.Sach;
  *
  * @author USER
  */
-public class QLSachJFrame1 extends javax.swing.JFrame {
-    public boolean returnHomeFrame = true;
+public class QLSachJFrame1 extends QLFrame {
 
     /**
      * Creates new form QLSachJFrame
@@ -29,30 +31,10 @@ public class QLSachJFrame1 extends javax.swing.JFrame {
     public QLSachJFrame1() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                QLSachJFrame1 targ = (QLSachJFrame1)e.getComponent();
-                if (targ.returnHomeFrame){
-                    new HomeFrame().setVisible(true);                    
-                }
-            }
-        });
-        initDatas();
+        QLController.gotoHomeFrameAfterDispose(this);
+        QLSachController.initDatas(jTable1);
     }
     
-    private void initDatas(){
-//        SachDAO dao = new SachDAO();
-        List<Sach> list = SachDAO.readAll();
-        
-        String[] colsName = new String [] {"Mã sách","Tên sách","Trạng thái","Số lượng","Tên nhà xuất bản",
-                                            "Tên tác giả","Đầu sách"};
-        DefaultTableModel model = new DefaultTableModel(colsName, 0);
-        for(Sach instance : list){
-            model.addRow(instance.toPropertiesArray());
-        }
-        jTable1.setModel(model);
-    }
 
 
     /**
@@ -150,7 +132,7 @@ public class QLSachJFrame1 extends javax.swing.JFrame {
 
     private void insertActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormSach();
+        FormInsertUpdate form = new FormSach();
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();
@@ -158,7 +140,7 @@ public class QLSachJFrame1 extends javax.swing.JFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormSach(true);
+        FormInsertUpdate form = new FormSach(true);
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();

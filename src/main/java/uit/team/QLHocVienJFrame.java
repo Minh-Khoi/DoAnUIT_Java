@@ -5,8 +5,11 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import uit.team.controllers.QLController;
+import uit.team.controllers.QLHocVienController;
 import uit.team.forms.DeleteForm;
 import uit.team.forms.FormHocVien;
+import uit.team.forms.FormInsertUpdate;
 import uit.team.models.mssql.dao.HocVienDAO;
 import uit.team.models.mssql.entities.HocVien;
 
@@ -20,8 +23,7 @@ import uit.team.models.mssql.entities.HocVien;
  *
  * @author USER
  */
-public class QLHocVienJFrame extends javax.swing.JFrame {
-    public boolean returnHomeFrame = true;
+public class QLHocVienJFrame extends QLFrame {
 
     /**
      * Creates new form QLSachJFrame
@@ -29,27 +31,8 @@ public class QLHocVienJFrame extends javax.swing.JFrame {
     public QLHocVienJFrame() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                QLHocVienJFrame targ = (QLHocVienJFrame)e.getComponent();
-                if (targ.returnHomeFrame){
-                    new HomeFrame().setVisible(true);                    
-                }
-            }
-        });
-        initDatas();
-    }
-    private void initDatas(){
-//        HocVienDAO dao = new HocVienDAO();
-        List<HocVien> list = HocVienDAO.readAll();
-        
-        String[] colsName = new String [] {"Mã học viên", "Tên học viên","Số điện thoại","ngày sinh","đơn vị", "giới tính"};
-        DefaultTableModel model = new DefaultTableModel(colsName, 0);
-        for(HocVien instance : list){
-            model.addRow(instance.toPropertiesArray());
-        }
-        jTable1.setModel(model);
+        QLController.gotoHomeFrameAfterDispose(this);
+        QLHocVienController.initDatas(jTable1);
     }
 
     /**
@@ -149,7 +132,7 @@ public class QLHocVienJFrame extends javax.swing.JFrame {
 
     private void insertActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormHocVien();
+        FormInsertUpdate form = new FormHocVien();
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();
@@ -157,7 +140,7 @@ public class QLHocVienJFrame extends javax.swing.JFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormHocVien(true);
+        FormInsertUpdate form = new FormHocVien(true);
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();

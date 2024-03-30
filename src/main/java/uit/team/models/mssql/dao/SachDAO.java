@@ -24,7 +24,7 @@ import uit.team.models.mssql.entities.Sach;
  *
  * @author USER
  */
-public class SachDAO {
+public class SachDAO  extends EntityDaoInterface{
     private static Connection conn;
     static void connectDB() {
         try {
@@ -99,13 +99,13 @@ public class SachDAO {
         try(PreparedStatement preStmt = conn.prepareStatement(sql)) {
             ResultSet res = preStmt.executeQuery();
             while (res.next()){
-                String maSach = res.getNString("MASACH");
+                String maSach = res.getString("MASACH");
                 String tenSach = res.getNString("TENSACH");
                 String trangThai = res.getNString("TRANGTHAI");
                 int soLuong = res.getInt("SOLUONG");
                 String tenNXB = res.getNString("TENNXB");
                 String tenTG = res.getNString("TENTG");
-                String maDauSach = res.getNString("MADAUSACH");
+                String maDauSach = res.getString("MADAUSACH");
                 Sach obj = new Sach(maSach, tenSach, trangThai, soLuong, tenNXB, tenTG, maDauSach);
                 listObjs.add(obj);
             }
@@ -161,7 +161,7 @@ public class SachDAO {
             preStmt.setObject(index,value);
         }   
     }
-    public static List<Sach>  readByCols(Map<String, Object> colValue){
+    public static List  readByCols(Map<String, Object> colValue){
         connectDB();
         List<Sach> listObjs = new ArrayList<Sach>();
         String sql = "SELECT * FROM SACH " + generateWhereClause(colValue);

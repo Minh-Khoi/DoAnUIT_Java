@@ -5,8 +5,11 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import uit.team.controllers.QLController;
+import uit.team.controllers.QLDauSachController;
 import uit.team.forms.DeleteForm;
 import uit.team.forms.FormDauSach;
+import uit.team.forms.FormInsertUpdate;
 import uit.team.models.mssql.dao.DauSachDAO;
 import uit.team.models.mssql.entities.DauSach;
 
@@ -20,36 +23,17 @@ import uit.team.models.mssql.entities.DauSach;
  *
  * @author USER
  */
-public class QLDauSachJFrame1 extends javax.swing.JFrame {
-    public boolean returnHomeFrame = true;
+public class QLDauSachJFrame1 extends QLFrame {
     /**
      * Creates new form QLSachJFrame
      */
     public QLDauSachJFrame1() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                QLDauSachJFrame1 targ = (QLDauSachJFrame1)e.getComponent();
-                if (targ.returnHomeFrame){
-                    new HomeFrame().setVisible(true);                    
-                }
-            }
-        });
-        initDatas();
+        QLController.gotoHomeFrameAfterDispose(this);
+        QLDauSachController.initDatas(jTable1);
     }
 
-    private void initDatas(){
-        List<DauSach> list = DauSachDAO.readAll();
-        
-        String[] colsName = new String [] {"Mã đầu sách", "Tên đầu sách"};
-        DefaultTableModel model = new DefaultTableModel(colsName, 0);
-        for(DauSach instance : list){
-            model.addRow(instance.toPropertiesArray());
-        }
-        jTable1.setModel(model);
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,6 +73,7 @@ public class QLDauSachJFrame1 extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        modify.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         modify.setText("Sửa đổi");
         modify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +88,7 @@ public class QLDauSachJFrame1 extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel1.setText("Quản lý Đầu sách");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -140,7 +125,7 @@ public class QLDauSachJFrame1 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modify)
                     .addComponent(delete))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,7 +133,7 @@ public class QLDauSachJFrame1 extends javax.swing.JFrame {
 
     private void insertActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormDauSach();
+        FormDauSach form = new FormDauSach();
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();
@@ -156,7 +141,7 @@ public class QLDauSachJFrame1 extends javax.swing.JFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormDauSach(true);
+        FormDauSach form = new FormDauSach(true);
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();

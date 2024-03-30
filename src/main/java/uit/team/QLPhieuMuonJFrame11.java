@@ -5,7 +5,10 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import uit.team.controllers.QLController;
+import uit.team.controllers.QLPhieuMuonController;
 import uit.team.forms.DeleteForm;
+import uit.team.forms.FormInsertUpdate;
 import uit.team.forms.FormPhieuMuon;
 import uit.team.models.mssql.dao.PhieuMuonDAO;
 import uit.team.models.mssql.entities.PhieuMuon;
@@ -20,8 +23,7 @@ import uit.team.models.mssql.entities.PhieuMuon;
  *
  * @author USER
  */
-public class QLPhieuMuonJFrame11 extends javax.swing.JFrame {
-    public boolean returnHomeFrame = true;
+public class QLPhieuMuonJFrame11 extends QLFrame {
 
     /**
      * Creates new form QLSachJFrame
@@ -29,27 +31,8 @@ public class QLPhieuMuonJFrame11 extends javax.swing.JFrame {
     public QLPhieuMuonJFrame11() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                QLPhieuMuonJFrame11 targ = (QLPhieuMuonJFrame11)e.getComponent();
-                if (targ.returnHomeFrame){
-                    new HomeFrame().setVisible(true);                    
-                }
-            }
-        });
-        initDatas();
-    }
-    private void initDatas(){
-//        PhieuMuonDAO dao = new PhieuMuonDAO();
-        List<PhieuMuon> list = PhieuMuonDAO.readAll();
-        
-        String[] colsName = new String [] {"Mã phiếu mượn","Ngày mượn","Mã học viên", "Trạng thái trả"};
-        DefaultTableModel model = new DefaultTableModel(colsName, 0);
-        for(PhieuMuon instance : list){
-            model.addRow(instance.toPropertiesArray());
-        }
-        jTable1.setModel(model);
+        QLController.gotoHomeFrameAfterDispose(this);
+        QLPhieuMuonController.initDatas(jTable1);
     }
 
     /**
@@ -147,7 +130,7 @@ public class QLPhieuMuonJFrame11 extends javax.swing.JFrame {
 
     private void insertActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormPhieuMuon();
+        FormInsertUpdate form = new FormPhieuMuon();
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();
@@ -155,7 +138,7 @@ public class QLPhieuMuonJFrame11 extends javax.swing.JFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        JFrame form = new FormPhieuMuon(true);
+        FormInsertUpdate form = new FormPhieuMuon(true);
         form.setVisible(true);
         this.returnHomeFrame = false;
         this.dispose();

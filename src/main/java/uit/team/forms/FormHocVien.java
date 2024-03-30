@@ -14,8 +14,7 @@ import uit.team.QLHocVienJFrame;
  *
  * @author USER
  */
-public class FormHocVien extends javax.swing.JFrame {
-    private boolean modifyMode = false;
+public class FormHocVien  extends FormInsertUpdate {
     /**
      * Creates new form FormHocVien
      */
@@ -115,7 +114,7 @@ public class FormHocVien extends javax.swing.JFrame {
 
         sodtTextField4.setToolTipText("");
 
-        donViComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        donViComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "c153", "c152", "c151", "Pru-Indo","MetLifeBD" }));
 
         gioiTinhComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 

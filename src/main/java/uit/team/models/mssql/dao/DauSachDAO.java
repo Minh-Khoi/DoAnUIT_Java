@@ -23,7 +23,7 @@ import uit.team.models.mssql.entities.DauSach;
  *
  * @author USER
  */
-public class DauSachDAO {
+public class DauSachDAO extends EntityDaoInterface{
     private static Connection conn;
     static void connectDB() {
         try {
@@ -144,7 +144,7 @@ public class DauSachDAO {
             preStmt.setObject(index,value);
         }   
     }
-    public static List<DauSach> readByCols(Map<String, Object> colValue){
+    public static List readByCols(Map<String, Object> colValue){
         connectDB();
         List<DauSach> listDauSach = new ArrayList<DauSach>();
         String sql = "SELECT * FROM DAUSACH " + generateWhereClause(colValue);

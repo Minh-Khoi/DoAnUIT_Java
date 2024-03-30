@@ -14,8 +14,7 @@ import uit.team.QLDauSachJFrame1;
  *
  * @author USER
  */
-public class FormDauSach extends javax.swing.JFrame {
-    private boolean modifyMode = false;
+public class FormDauSach extends FormInsertUpdate {
 
     /**
      * Creates new form FormDauSach

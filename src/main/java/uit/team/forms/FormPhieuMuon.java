@@ -14,8 +14,7 @@ import uit.team.QLPhieuMuonJFrame11;
  *
  * @author USER
  */
-public class FormPhieuMuon extends javax.swing.JFrame {
-    private boolean modifyMode = false;
+public class FormPhieuMuon  extends FormInsertUpdate {
 
     /**
      * Creates new form FormPhieuMuon

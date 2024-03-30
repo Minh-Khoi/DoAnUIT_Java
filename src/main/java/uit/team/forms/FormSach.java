@@ -14,8 +14,7 @@ import uit.team.QLSachJFrame1;
  *
  * @author USER
  */
-public class FormSach extends javax.swing.JFrame {
-    private boolean modifyMode = false;
+public class FormSach  extends FormInsertUpdate {
 
     /**
      * Creates new form FormSach

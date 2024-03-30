@@ -26,7 +26,7 @@ import uit.team.models.mssql.entities.HocVien;
  *
  * @author USER
  */
-public class HocVienDAO {
+public class HocVienDAO extends EntityDaoInterface {
     private static Connection conn;
     static void connectDB() {
         try {
@@ -161,7 +161,7 @@ public class HocVienDAO {
             preStmt.setObject(index,value);
         }   
     }
-    public static List<HocVien>  readByCols(Map<String, Object> colValue){
+    public static List  readByCols(Map<String, Object> colValue){
         connectDB();
         List<HocVien> listObjs = new ArrayList<HocVien>();
         String sql = "SELECT * FROM HOCVIEN " + generateWhereClause(colValue);
