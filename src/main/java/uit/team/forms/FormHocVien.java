@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import uit.team.QLHocVienJFrame;
+import uit.team.controllers.FormController;
 
 /**
  *
@@ -20,29 +21,21 @@ public class FormHocVien  extends FormInsertUpdate {
      */
     public FormHocVien() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Thêm Học viên");
-        setFunctionClose();
+        initForm(modifyMode);
     }
 
     public FormHocVien(boolean modifyMode_) {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Chỉnh sửa Học viên");
-        this.modifyMode = modifyMode_;
-        setFunctionClose();
+        initForm(modifyMode_);
     }
 
     
-    private void setFunctionClose(){
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                new QLHocVienJFrame().setVisible(true);
-            }
-        });
-    }
-    
+    private void initForm(boolean modifyMode_){        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText(modifyMode_ ? "Chỉnh sửa Học viên" : "Thêm Học viên");
+        this.modifyMode = modifyMode_;
+        FormController.setFunctionClose(this);
+    }    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

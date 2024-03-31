@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import uit.team.QLDauSachJFrame1;
+import uit.team.controllers.FormController;
 
 /**
  *
@@ -21,28 +22,19 @@ public class FormDauSach extends FormInsertUpdate {
      */
     public FormDauSach() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Thêm Đầu Sách");
-        this.modifyMode = false;
-        setFunctionClose();
-
+        initForm(modifyMode);
     }
     
     public FormDauSach(boolean modifyMode_) {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Chỉnh sửa Đầu Sách");
-        this.modifyMode = modifyMode_;
-        setFunctionClose();
+        initForm(modifyMode_);
     }
     
-    private void setFunctionClose(){
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                new QLDauSachJFrame1().setVisible(true);
-            }
-        });
+    private void initForm(boolean modifyMode_){        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText(modifyMode_ ? "Chỉnh sửa Đầu sách" : "Thêm Đầu sách");
+        this.modifyMode = modifyMode_;
+        FormController.setFunctionClose(this);
     }
 
     /**

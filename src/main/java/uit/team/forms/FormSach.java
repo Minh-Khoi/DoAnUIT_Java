@@ -9,6 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import uit.team.QLSachJFrame1;
+import uit.team.controllers.FormController;
+import uit.team.controllers.FormSachController;
 
 /**
  *
@@ -21,28 +23,21 @@ public class FormSach  extends FormInsertUpdate {
      */
     public FormSach() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Thêm Sách");
-        setFunctionClose();
+        initForm(modifyMode);
     }
 
     public FormSach(boolean modifyMode_) {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Chỉnh sửa  Sách");
-        this.modifyMode = modifyMode_;
-        setFunctionClose();
+        initForm(modifyMode_);
     }
     
-    private void setFunctionClose(){
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                new QLSachJFrame1().setVisible(true);
-            }
-        });
+    private void initForm(boolean modifyMode__){        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        this.modifyMode = modifyMode__;
+        titleLabel1.setText(modifyMode__ ? "Chỉnh sửa Sách" : "Thêm sách");
+        FormController.setFunctionClose(this);
+        FormSachController.populateDauSachCombobox(dauSachComboBox1);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

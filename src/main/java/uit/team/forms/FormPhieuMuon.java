@@ -9,6 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import uit.team.QLPhieuMuonJFrame11;
+import uit.team.controllers.FormController;
+import uit.team.controllers.FormPhieuMuonController;
 
 /**
  *
@@ -21,28 +23,21 @@ public class FormPhieuMuon  extends FormInsertUpdate {
      */
     public FormPhieuMuon() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Thêm Phiếu Mượn");
-        setFunctionClose();
+        initForm(modifyMode);
     }
 
     public FormPhieuMuon(boolean modifyMode_) {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-        titleLabel1.setText("Chỉnh sửa Phiếu Mượn");
-        this.modifyMode = modifyMode_;
-        setFunctionClose();
+        initForm(modifyMode_);
     }
     
-    private void setFunctionClose(){
-        addWindowListener(new WindowAdapter(){
-            @Override
-            public void windowClosed(WindowEvent e) {
-                new QLPhieuMuonJFrame11().setVisible(true);
-            }
-        });
+    private void initForm(boolean modifyMode_){        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText(modifyMode_ ? "Chỉnh sửa Phiếu" : "Thêm Phiếu");
+        this.modifyMode = modifyMode_;
+        FormController.setFunctionClose(this);
+        FormPhieuMuonController.populateHocVienCombobox(hocVienComboBox1);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,7 +57,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         modifyTab = new javax.swing.JButton();
         maPhieuTextField1 = new javax.swing.JTextField();
         ngayMuonLabel8 = new javax.swing.JLabel();
-        maHocVienComboBox1 = new javax.swing.JComboBox<>();
+        hocVienComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         thongTinHVTextPane1 = new javax.swing.JTextPane();
         ngayMuonDateChooser1 = new com.toedter.calendar.JDateChooser();
@@ -104,7 +99,17 @@ public class FormPhieuMuon  extends FormInsertUpdate {
 
         ngayMuonLabel8.setText("Ngày mượn");
 
-        maHocVienComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        hocVienComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        hocVienComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                hocVienComboBox1ItemStateChanged(evt);
+            }
+        });
+        hocVienComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hocVienComboBox1ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(thongTinHVTextPane1);
 
@@ -134,7 +139,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(maHocVienComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(hocVienComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(maPhieuTextField1))
                                 .addGap(169, 169, 169))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -164,23 +169,24 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                             .addComponent(maPhieuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(maPhieuTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(maHocVienComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(hocVienComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(hocVienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(thongTinHVLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16))))
+                                .addGap(43, 43, 43)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ngayMuonLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ngayMuonDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(110, 110, 110))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ngayMuonLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ngayMuonDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(137, 137, 137))
+                        .addGap(214, 214, 214))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,6 +231,17 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         // TODO add your handling code here:
     }//GEN-LAST:event_modifyTabActionPerformed
 
+    private void hocVienComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hocVienComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hocVienComboBox1ActionPerformed
+
+    private void hocVienComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_hocVienComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        String selectedHV = (String) evt.getItem();
+        String maHV = selectedHV.split("-")[0];
+        FormPhieuMuonController.populateHocVienInfosTab(thongTinHVTextPane1, maHV);
+    }//GEN-LAST:event_hocVienComboBox1ItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -262,11 +279,11 @@ public class FormPhieuMuon  extends FormInsertUpdate {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Canvas canvas1;
+    private javax.swing.JComboBox<String> hocVienComboBox1;
     private javax.swing.JLabel hocVienLabel;
     private javax.swing.JButton insertTab;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> maHocVienComboBox1;
     private javax.swing.JLabel maPhieuLabel;
     private javax.swing.JTextField maPhieuTextField1;
     private javax.swing.JButton modifyTab;
