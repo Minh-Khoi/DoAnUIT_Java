@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import uit.team.controllers.FormController;
 import uit.team.controllers.QLController;
 import uit.team.controllers.QLDauSachController;
 import uit.team.forms.DeleteForm;
@@ -50,6 +51,7 @@ public class QLDauSachJFrame1 extends QLFrame {
         modify = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        errorLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +93,9 @@ public class QLDauSachJFrame1 extends QLFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         jLabel1.setText("Quản lý Đầu sách");
 
+        errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +108,9 @@ public class QLDauSachJFrame1 extends QLFrame {
                 .addContainerGap(306, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
+                .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(modify)
                 .addGap(165, 165, 165)
                 .addComponent(delete)
@@ -122,9 +129,11 @@ public class QLDauSachJFrame1 extends QLFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modify)
-                    .addComponent(delete))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(modify)
+                        .addComponent(delete))
+                    .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -141,18 +150,28 @@ public class QLDauSachJFrame1 extends QLFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        FormDauSach form = new FormDauSach(true);
-        form.setVisible(true);
-        this.returnHomeFrame = false;
-        this.dispose();
+        String selectedPrV = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedPrV.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedPrV);
+        } else {
+            FormDauSach form = new FormDauSach(true, selectedPrV);
+            form.setVisible(true);
+            this.returnHomeFrame = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        JFrame deleteForm = new DeleteForm(this);
-        deleteForm.setVisible(true);
-        this.returnHomeFrame = false;
-        this.dispose();
+        String selectedPrV = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedPrV.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedPrV);
+        } else {
+            JFrame deleteForm = new DeleteForm(this);
+            deleteForm.setVisible(true);
+            this.returnHomeFrame = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**
@@ -195,10 +214,11 @@ public class QLDauSachJFrame1 extends QLFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton delete;
+    public javax.swing.JLabel errorLabel1;
     private javax.swing.JButton insertAction;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JButton modify;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uit.team.forms;
-
-import javax.swing.JFrame;
+package uit.team.models.businesses;
 
 /**
  *
  * @author USER
  */
-public class FormInsertUpdate extends JFrame {
-    protected boolean modifyMode = false;
-    protected String prV;
+public class SachUtils {
+    
 }

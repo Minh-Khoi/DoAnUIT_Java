@@ -30,4 +30,15 @@ public class QLController {
             }
         });
     }
+       
+    public static String getSelectedRowFirstCell(JTable jtable) {
+//        JTable jtable = qlFrame.jTable1;
+        int[] selection = jtable.getSelectedRows();
+        if(selection.length != 1) {
+            return "ERR: Phải chọn 1 và chỉ 1 đối tượng";
+        } else {
+            return jtable.getValueAt(0, 0).toString();
+        }
+    }
+    
 }

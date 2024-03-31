@@ -11,5 +11,5 @@ package uit.team;
  */
 public class QLFrame extends javax.swing.JFrame {
     public boolean returnHomeFrame = true;
-    
+
 }

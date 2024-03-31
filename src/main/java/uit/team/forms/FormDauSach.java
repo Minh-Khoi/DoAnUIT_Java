@@ -22,18 +22,23 @@ public class FormDauSach extends FormInsertUpdate {
      */
     public FormDauSach() {
         initComponents();
-        initForm(modifyMode);
+        initForm(modifyMode,"");
     }
     
-    public FormDauSach(boolean modifyMode_) {
+    public FormDauSach(boolean modifyMode_, String prV) {
         initComponents();
-        initForm(modifyMode_);
+        initForm(modifyMode_, prV);
     }
     
-    private void initForm(boolean modifyMode_){        
+    private void initForm(boolean modifyMode_,String prV_){        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         titleLabel1.setText(modifyMode_ ? "Chỉnh sửa Đầu sách" : "Thêm Đầu sách");
         this.modifyMode = modifyMode_;
+        maTextField1.setEnabled(!modifyMode);
+        this.prV = prV_;
+        this.maTextField1.setText(prV);
+        this.insertTab.setVisible(false);
+        this.modifyTab.setVisible(false);
         FormController.setFunctionClose(this);
     }
 
@@ -55,6 +60,7 @@ public class FormDauSach extends FormInsertUpdate {
         modifyTab = new javax.swing.JButton();
         maTextField1 = new javax.swing.JTextField();
         tenTextField2 = new javax.swing.JTextField();
+        errorLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +96,9 @@ public class FormDauSach extends FormInsertUpdate {
 
         tenTextField2.setToolTipText("");
 
+        errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,6 +123,10 @@ public class FormDauSach extends FormInsertUpdate {
                     .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(220, 220, 220))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +147,9 @@ public class FormDauSach extends FormInsertUpdate {
                             .addComponent(tenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(titleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(errorLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -151,7 +166,7 @@ public class FormDauSach extends FormInsertUpdate {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,6 +224,7 @@ public class FormDauSach extends FormInsertUpdate {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel errorLabel1;
     private javax.swing.JButton insertTab;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel maLabel;

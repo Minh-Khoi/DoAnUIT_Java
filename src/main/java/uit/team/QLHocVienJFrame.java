@@ -50,6 +50,7 @@ public class QLHocVienJFrame extends QLFrame {
         modify = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        errorLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,23 +91,29 @@ public class QLHocVienJFrame extends QLFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Quản lý Học viên");
 
+        errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(insertAction, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(243, 243, 243)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(modify)
-                .addGap(165, 165, 165)
-                .addComponent(delete)
-                .addGap(173, 173, 173))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(insertAction, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(243, 243, 243)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(modify)
+                        .addGap(165, 165, 165)
+                        .addComponent(delete)))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +128,12 @@ public class QLHocVienJFrame extends QLFrame {
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modify)
-                    .addComponent(delete))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(modify)
+                        .addComponent(delete))
+                    .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,18 +149,28 @@ public class QLHocVienJFrame extends QLFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        FormInsertUpdate form = new FormHocVien(true);
-        form.setVisible(true);
-        this.returnHomeFrame = false;
-        this.dispose();
+        String selectedPrV = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedPrV.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedPrV);
+        } else {
+            FormInsertUpdate form = new FormHocVien(true);
+            form.setVisible(true);
+            this.returnHomeFrame = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        JFrame deleteForm = new DeleteForm(this);
-        deleteForm.setVisible(true);
-        this.returnHomeFrame = false;
-        this.dispose();
+        String selectedPrV = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedPrV.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedPrV);
+        } else {
+            JFrame deleteForm = new DeleteForm(this);
+            deleteForm.setVisible(true);
+            this.returnHomeFrame = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**
@@ -192,6 +211,7 @@ public class QLHocVienJFrame extends QLFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton delete;
+    private javax.swing.JLabel errorLabel1;
     private javax.swing.JButton insertAction;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

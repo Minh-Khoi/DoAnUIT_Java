@@ -50,6 +50,7 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
         modify = new javax.swing.JButton();
         delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        errorLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +92,9 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quản lý phiếu mượn");
 
+        errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
+        errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +107,9 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(659, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addComponent(modify)
                 .addGap(165, 165, 165)
                 .addComponent(delete)
@@ -118,11 +124,15 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modify)
-                    .addComponent(delete))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(modify)
+                            .addComponent(delete))
+                        .addGap(0, 9, Short.MAX_VALUE))
+                    .addComponent(errorLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -138,18 +148,28 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        FormInsertUpdate form = new FormPhieuMuon(true);
-        form.setVisible(true);
-        this.returnHomeFrame = false;
-        this.dispose();
+        String selectedPrV = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedPrV.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedPrV);
+        } else {
+            FormInsertUpdate form = new FormPhieuMuon(true);
+            form.setVisible(true);
+            this.returnHomeFrame = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        JFrame deleteForm = new DeleteForm(this);
-        deleteForm.setVisible(true);
-        this.returnHomeFrame = false;
-        this.dispose();
+        String selectedPrV = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedPrV.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedPrV);
+        } else {
+            JFrame deleteForm = new DeleteForm(this);
+            deleteForm.setVisible(true);
+            this.returnHomeFrame = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**
@@ -190,6 +210,7 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton delete;
+    private javax.swing.JLabel errorLabel1;
     private javax.swing.JButton insertAction;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

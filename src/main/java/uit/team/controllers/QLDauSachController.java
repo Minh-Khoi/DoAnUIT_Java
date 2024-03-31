@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import uit.team.HomeFrame;
 import uit.team.QLDauSachJFrame1;
 import uit.team.QLFrame;
+import uit.team.forms.DeleteForm;
 import uit.team.models.mssql.dao.DauSachDAO;
 import uit.team.models.mssql.dao.EntityDaoInterface;
 import uit.team.models.mssql.entities.DauSach;
@@ -35,6 +36,5 @@ public class QLDauSachController {
         }
         jTable1.setModel(model);
     }
-    
     
 }
