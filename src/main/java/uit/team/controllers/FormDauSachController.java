@@ -5,10 +5,19 @@
  */
 package uit.team.controllers;
 
+import uit.team.forms.FormDauSach;
+import uit.team.models.mssql.dao.DauSachDAO;
+import uit.team.models.mssql.entities.DauSach;
+
 /**
  *
  * @author USER
  */
 public class FormDauSachController  extends FormController{
+    
+    public static void populateDatas(FormDauSach form, String prV) {
+        DauSach instance = DauSachDAO.readByPrimaryKey(prV);
+        form.tenTextField2.setText(instance.getTenDauSach());
+    }
     
 }

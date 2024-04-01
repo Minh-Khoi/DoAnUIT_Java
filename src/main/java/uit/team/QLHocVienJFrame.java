@@ -153,7 +153,7 @@ public class QLHocVienJFrame extends QLFrame {
         if (selectedPrV.startsWith("ERR:")){
             this.errorLabel1.setText(selectedPrV);
         } else {
-            FormInsertUpdate form = new FormHocVien(true);
+            FormInsertUpdate form = new FormHocVien(true,selectedPrV);
             form.setVisible(true);
             this.returnHomeFrame = false;
             this.dispose();

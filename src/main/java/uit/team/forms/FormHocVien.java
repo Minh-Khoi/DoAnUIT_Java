@@ -5,11 +5,13 @@
  */
 package uit.team.forms;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import uit.team.QLHocVienJFrame;
 import uit.team.controllers.FormController;
+import uit.team.controllers.FormHocVienController;
 
 /**
  *
@@ -21,23 +23,27 @@ public class FormHocVien  extends FormInsertUpdate {
      */
     public FormHocVien() {
         initComponents();
-        initForm(modifyMode);
+        initForm(modifyMode,"");
     }
 
-    public FormHocVien(boolean modifyMode_) {
+    public FormHocVien(boolean modifyMode_, String selectedPrV) {
         initComponents();
-        initForm(modifyMode_);
+        initForm(modifyMode_, selectedPrV);
     }
-
     
-    private void initForm(boolean modifyMode_){        
+    private void initForm(boolean modifyMode_, String selectedPrV){        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         titleLabel1.setText(modifyMode_ ? "Chỉnh sửa Học viên" : "Thêm Học viên");
         this.modifyMode = modifyMode_;
+        this.prV = selectedPrV;
         maTextField1.setEnabled(!modifyMode);
+        maTextField1.setPreferredSize(new Dimension(260, 260));
         this.insertTab.setVisible(false);
         this.modifyTab.setVisible(false);
         FormController.setFunctionClose(this);
+        if (this.modifyMode){
+            FormHocVienController.populateDatas(this, prV);
+        }
     }    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -283,23 +289,23 @@ public class FormHocVien  extends FormInsertUpdate {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> donViComboBox1;
+    public javax.swing.JComboBox<String> donViComboBox1;
     private javax.swing.JLabel donViLabel6;
     private javax.swing.JLabel errorLabel1;
-    private javax.swing.JComboBox<String> gioiTinhComboBox1;
+    public javax.swing.JComboBox<String> gioiTinhComboBox1;
     private javax.swing.JLabel gioiTinhLabel7;
     private javax.swing.JButton insertTab;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel maLabel;
-    private javax.swing.JTextField maTextField1;
+    public javax.swing.JTextField maTextField1;
     private javax.swing.JButton modifyTab;
-    private com.toedter.calendar.JDateChooser ngaySinhDateChooser1;
+    public com.toedter.calendar.JDateChooser ngaySinhDateChooser1;
     private javax.swing.JLabel ngaySinhLabel3;
     private javax.swing.JLabel sodtLabel4;
-    private javax.swing.JTextField sodtTextField4;
+    public javax.swing.JTextField sodtTextField4;
     private javax.swing.JButton submitButton1;
     private javax.swing.JLabel tenLabel;
-    private javax.swing.JTextField tenTextField2;
+    public javax.swing.JTextField tenTextField2;
     private javax.swing.JLabel titleLabel1;
     // End of variables declaration//GEN-END:variables
 }

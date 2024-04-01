@@ -5,11 +5,13 @@
  */
 package uit.team.forms;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import uit.team.QLDauSachJFrame1;
 import uit.team.controllers.FormController;
+import uit.team.controllers.FormDauSachController;
 
 /**
  *
@@ -37,9 +39,14 @@ public class FormDauSach extends FormInsertUpdate {
         maTextField1.setEnabled(!modifyMode);
         this.prV = prV_;
         this.maTextField1.setText(prV);
+        this.maTextField1.setPreferredSize(new Dimension(260, 260));
+        this.tenTextField2.setPreferredSize(new Dimension(260, 260));
         this.insertTab.setVisible(false);
         this.modifyTab.setVisible(false);
         FormController.setFunctionClose(this);
+        if (this.modifyMode){
+            FormDauSachController.populateDatas(this, prV);
+        }
     }
 
     /**
@@ -93,8 +100,10 @@ public class FormDauSach extends FormInsertUpdate {
         });
 
         maTextField1.setToolTipText("");
+        maTextField1.setMinimumSize(new java.awt.Dimension(4, 90));
 
         tenTextField2.setToolTipText("");
+        tenTextField2.setPreferredSize(new java.awt.Dimension(4, 91));
 
         errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
@@ -116,13 +125,15 @@ public class FormDauSach extends FormInsertUpdate {
                             .addComponent(tenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(maTextField1)
-                            .addComponent(tenTextField2))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                            .addComponent(maTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(tenTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(titleLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,7 +152,7 @@ public class FormDauSach extends FormInsertUpdate {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(maLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(maTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tenTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,7 +170,7 @@ public class FormDauSach extends FormInsertUpdate {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,9 +183,11 @@ public class FormDauSach extends FormInsertUpdate {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
+    private void modifyTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTabActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_submitButton1ActionPerformed
+        titleLabel1.setText("Chỉnh sửa Đầu Sách");
+        this.modifyMode = true;
+    }//GEN-LAST:event_modifyTabActionPerformed
 
     private void insertTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertTabActionPerformed
         // TODO add your handling code here:
@@ -182,11 +195,9 @@ public class FormDauSach extends FormInsertUpdate {
         modifyMode = false;
     }//GEN-LAST:event_insertTabActionPerformed
 
-    private void modifyTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyTabActionPerformed
+    private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
         // TODO add your handling code here:
-        titleLabel1.setText("Chỉnh sửa Đầu Sách");
-        this.modifyMode = true;
-    }//GEN-LAST:event_modifyTabActionPerformed
+    }//GEN-LAST:event_submitButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,7 +243,7 @@ public class FormDauSach extends FormInsertUpdate {
     private javax.swing.JButton modifyTab;
     private javax.swing.JButton submitButton1;
     private javax.swing.JLabel tenLabel;
-    private javax.swing.JTextField tenTextField2;
+    public javax.swing.JTextField tenTextField2;
     private javax.swing.JLabel titleLabel1;
     // End of variables declaration//GEN-END:variables
 }
