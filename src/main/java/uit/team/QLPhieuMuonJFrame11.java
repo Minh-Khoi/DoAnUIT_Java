@@ -152,7 +152,7 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
         if (selectedPrV.startsWith("ERR:")){
             this.errorLabel1.setText(selectedPrV);
         } else {
-            FormInsertUpdate form = new FormPhieuMuon(true);
+            FormInsertUpdate form = new FormPhieuMuon(true,selectedPrV);
             form.setVisible(true);
             this.returnHomeFrame = false;
             this.dispose();

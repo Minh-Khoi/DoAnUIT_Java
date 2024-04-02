@@ -23,18 +23,19 @@ public class FormPhieuMuon  extends FormInsertUpdate {
      */
     public FormPhieuMuon() {
         initComponents();
-        initForm(modifyMode);
+        initForm(modifyMode,"");
     }
 
-    public FormPhieuMuon(boolean modifyMode_) {
+    public FormPhieuMuon(boolean modifyMode_, String selectedPrv) {
         initComponents();
-        initForm(modifyMode_);
+        initForm(modifyMode_,selectedPrv);
     }
     
-    private void initForm(boolean modifyMode_){        
+    private void initForm(boolean modifyMode_, String selectedPrv){        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         titleLabel1.setText(modifyMode_ ? "Chỉnh sửa Phiếu" : "Thêm Phiếu");
         this.modifyMode = modifyMode_;
+        this.prV = selectedPrv;
         maPhieuTextField1.setEnabled(!modifyMode);
         this.insertTab.setVisible(false);
         this.modifyTab.setVisible(false);

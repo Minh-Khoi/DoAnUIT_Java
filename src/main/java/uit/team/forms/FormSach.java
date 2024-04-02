@@ -23,17 +23,18 @@ public class FormSach  extends FormInsertUpdate {
      */
     public FormSach() {
         initComponents();
-        initForm(modifyMode);
+        initForm(modifyMode,"");
     }
 
-    public FormSach(boolean modifyMode_) {
+    public FormSach(boolean modifyMode_, String selectedPrv) {
         initComponents();
-        initForm(modifyMode_);
+        initForm(modifyMode_,selectedPrv);
     }
     
-    private void initForm(boolean modifyMode__){        
+    private void initForm(boolean modifyMode__, String selectedPrv){        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         this.modifyMode = modifyMode__;
+        this.prV = selectedPrv;
         titleLabel1.setText(modifyMode__ ? "Chỉnh sửa Sách" : "Thêm sách");
         maTextField1.setEnabled(!modifyMode);
         this.insertTab.setVisible(false);

@@ -154,7 +154,7 @@ public class QLSachJFrame1 extends QLFrame {
         if (selectedPrV.startsWith("ERR:")){
             this.errorLabel1.setText(selectedPrV);
         } else {
-            FormInsertUpdate form = new FormSach(true);
+            FormInsertUpdate form = new FormSach(true,selectedPrV);
             form.setVisible(true);
             this.returnHomeFrame = false;
             this.dispose();
