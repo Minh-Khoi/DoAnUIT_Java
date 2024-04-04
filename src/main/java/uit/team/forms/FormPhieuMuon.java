@@ -40,7 +40,10 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         this.insertTab.setVisible(false);
         this.modifyTab.setVisible(false);
         FormController.setFunctionClose(this);
-        FormPhieuMuonController.populateHocVienCombobox(hocVienComboBox1);
+        FormPhieuMuonController.initHocVienCombobox(hocVienComboBox1);
+        if(this.modifyMode){
+            FormPhieuMuonController.populateDatas(this, prV);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,6 +69,8 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         thongTinHVTextPane1 = new javax.swing.JTextPane();
         ngayMuonDateChooser1 = new com.toedter.calendar.JDateChooser();
         errorLabel1 = new javax.swing.JLabel();
+        trangThaiLabel1 = new javax.swing.JLabel();
+        trangThaiComboBox1 = new javax.swing.JComboBox<>();
         canvas1 = new java.awt.Canvas();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -121,6 +126,10 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
+        trangThaiLabel1.setText("Trangj  thái");
+
+        trangThaiComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OK","Vô hiệu","CHƯA TRẢ" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -135,14 +144,15 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                         .addComponent(modifyTab, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(thongTinHVLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(maPhieuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(hocVienLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(ngayMuonLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ngayMuonLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(trangThaiLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -154,7 +164,9 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 16, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ngayMuonDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ngayMuonDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                                    .addComponent(trangThaiComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -197,9 +209,14 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                         .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(ngayMuonLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ngayMuonDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ngayMuonLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ngayMuonDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(trangThaiLabel1)
+                            .addComponent(trangThaiComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
@@ -295,19 +312,21 @@ public class FormPhieuMuon  extends FormInsertUpdate {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Canvas canvas1;
     private javax.swing.JLabel errorLabel1;
-    private javax.swing.JComboBox<String> hocVienComboBox1;
+    public javax.swing.JComboBox<String> hocVienComboBox1;
     private javax.swing.JLabel hocVienLabel;
     private javax.swing.JButton insertTab;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel maPhieuLabel;
-    private javax.swing.JTextField maPhieuTextField1;
+    public javax.swing.JTextField maPhieuTextField1;
     private javax.swing.JButton modifyTab;
-    private com.toedter.calendar.JDateChooser ngayMuonDateChooser1;
+    public com.toedter.calendar.JDateChooser ngayMuonDateChooser1;
     private javax.swing.JLabel ngayMuonLabel8;
     private javax.swing.JButton submitButton1;
     private javax.swing.JLabel thongTinHVLabel4;
-    private javax.swing.JTextPane thongTinHVTextPane1;
+    public javax.swing.JTextPane thongTinHVTextPane1;
     private javax.swing.JLabel titleLabel1;
+    public javax.swing.JComboBox<String> trangThaiComboBox1;
+    private javax.swing.JLabel trangThaiLabel1;
     // End of variables declaration//GEN-END:variables
 }

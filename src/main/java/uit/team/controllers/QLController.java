@@ -37,7 +37,7 @@ public class QLController {
         if(selection.length != 1) {
             return "ERR: Phải chọn 1 và chỉ 1 đối tượng";
         } else {
-            return jtable.getValueAt(0, 0).toString();
+            return jtable.getValueAt(selection[0], 0).toString();
         }
     }
     
