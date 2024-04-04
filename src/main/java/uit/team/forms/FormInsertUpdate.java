@@ -12,6 +12,6 @@ import javax.swing.JFrame;
  * @author USER
  */
 public class FormInsertUpdate extends JFrame {
-    protected boolean modifyMode = false;
-    protected String prV;
+    public boolean modifyMode = false;
+    public String prV;
 }

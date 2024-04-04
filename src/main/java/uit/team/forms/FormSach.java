@@ -263,6 +263,8 @@ public class FormSach  extends FormInsertUpdate {
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
         // TODO add your handling code here:
+        FormSachController.saveDatas(this);
+        this.dispose();
     }//GEN-LAST:event_submitButton1ActionPerformed
 
     private void insertTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertTabActionPerformed

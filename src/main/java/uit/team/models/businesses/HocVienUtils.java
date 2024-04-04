@@ -28,4 +28,15 @@ public class HocVienUtils {
         HocVien hv = HocVienDAO.readByPrimaryKey(maHV);
         return hv.getMaHV() + " - " + hv.getTenHV() + " - " + hv.getDonVi() + " - " + hv.getSoDT();
     }
+    
+    
+    public static void saveInstance(HocVien instance, boolean modifyMode) {
+        if(modifyMode){
+            HocVienDAO.update(instance);
+        } else {
+            String newPrV = HocVienDAO.generateNewPrimaryValue();
+            instance.setMaHV(newPrV);
+            HocVienDAO.insert(instance);
+        }
+    }
 }

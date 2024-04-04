@@ -22,4 +22,5 @@ public abstract class EntityDaoInterface {
     public static List<EntityInterface>  readByCols(Map<String, Object> colValue){return null;}
     public static int update(EntityInterface obj){return 0 ;}
     public static int delete(String prValue){return 0;}
+    public static String generateNewPrimaryValue(){return null;};
 }

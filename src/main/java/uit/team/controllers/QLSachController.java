@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import uit.team.QLSachJFrame1;
+import uit.team.models.mssql.dao.DauSachDAO;
 import uit.team.models.mssql.dao.SachDAO;
 import uit.team.models.mssql.entities.Sach;
 
@@ -29,7 +30,11 @@ public class QLSachController  {
                                             "Tên tác giả","Đầu sách"};
         DefaultTableModel model = new DefaultTableModel(colsName, 0);
         for(Sach instance : list){
-            model.addRow(instance.toPropertiesArray());
+            Object[] instanceInfos = instance.toPropertiesArray();
+            String maDauSach = instanceInfos[instanceInfos.length-1].toString();
+            String tenDauSach = DauSachDAO.readByPrimaryKey(maDauSach).getTenDauSach();
+            instanceInfos[instanceInfos.length-1] = tenDauSach;
+            model.addRow(instanceInfos);
         }
         jTable1.setModel(model);
     }

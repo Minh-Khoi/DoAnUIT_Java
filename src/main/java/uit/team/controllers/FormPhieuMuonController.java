@@ -37,10 +37,10 @@ public class FormPhieuMuonController  extends FormController{
         PhieuMuon instance = PhieuMuonDAO.readByPrimaryKey(prV);
         form.maPhieuTextField1.setText(instance.getMaPhieu());
         form.ngayMuonDateChooser1.setDate(instance.getNgayMuon());
-        form.trangThaiComboBox1.setSelectedItem(PhieuMuonUtils.getTrangThaiPhieuMuon(prV));
+        form.trangThaiComboBox1.setSelectedItem(PhieuMuonUtils.getTrangThaiPhieuMuon(prV).trim());
         String fullHocVienInfos = HocVienUtils.queryFullInfos(instance.getMaHV());
         String[] arrayHVInfos = fullHocVienInfos.split("-");
-        form.hocVienComboBox1.setSelectedItem(arrayHVInfos[0]+"-"+arrayHVInfos[1]);
+        form.hocVienComboBox1.setSelectedItem(arrayHVInfos[0].trim()+" - "+arrayHVInfos[1].trim());
         form.thongTinHVTextPane1.setText(fullHocVienInfos);
     }
     

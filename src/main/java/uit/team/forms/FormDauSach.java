@@ -197,6 +197,8 @@ public class FormDauSach extends FormInsertUpdate {
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
         // TODO add your handling code here:
+        FormDauSachController.saveDatas(this);
+        this.dispose();
     }//GEN-LAST:event_submitButton1ActionPerformed
 
     /**
@@ -239,7 +241,7 @@ public class FormDauSach extends FormInsertUpdate {
     private javax.swing.JButton insertTab;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel maLabel;
-    private javax.swing.JTextField maTextField1;
+    public javax.swing.JTextField maTextField1;
     private javax.swing.JButton modifyTab;
     private javax.swing.JButton submitButton1;
     private javax.swing.JLabel tenLabel;
