@@ -218,7 +218,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                             .addComponent(trangThaiLabel1)
                             .addComponent(trangThaiComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -244,8 +244,8 @@ public class FormPhieuMuon  extends FormInsertUpdate {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(27, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(28, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(72, Short.MAX_VALUE)))
         );
 
         pack();
@@ -253,6 +253,8 @@ public class FormPhieuMuon  extends FormInsertUpdate {
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
         // TODO add your handling code here:
+        FormPhieuMuonController.saveDatas(this);
+        this.dispose();
     }//GEN-LAST:event_submitButton1ActionPerformed
 
     private void insertTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertTabActionPerformed

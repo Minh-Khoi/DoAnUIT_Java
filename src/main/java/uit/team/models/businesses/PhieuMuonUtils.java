@@ -36,4 +36,14 @@ public class PhieuMuonUtils {
         }
     }
     
+    
+    public static void saveInstance(PhieuMuon instance, boolean modifyMode) {
+        if(modifyMode){
+            PhieuMuonDAO.update(instance);
+        } else {
+            String newPrV = PhieuMuonDAO.generateNewPrimaryValue();
+            instance.setMaPhieu(newPrV);
+            PhieuMuonDAO.insert(instance);
+        }
+    }
 }

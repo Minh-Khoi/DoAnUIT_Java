@@ -19,14 +19,14 @@ public class HocVienUtils {
         List<HocVien> listAll = HocVienDAO.readAll();
         List<String> listReturned = new ArrayList<String>();
         for(HocVien hocvien:listAll){
-            listReturned.add(hocvien.getMaHV() +" - " + hocvien.getTenHV());
+            listReturned.add(hocvien.getMaHV().trim() +" - " + hocvien.getTenHV().trim());
         }
         return listReturned;
     }
     
     public static String queryFullInfos(String maHV) {
         HocVien hv = HocVienDAO.readByPrimaryKey(maHV);
-        return hv.getMaHV() + " - " + hv.getTenHV() + " - " + hv.getDonVi() + " - " + hv.getSoDT();
+        return hv.getMaHV().trim() + " - " + hv.getTenHV().trim() + " - " + hv.getDonVi().trim() + " - " + hv.getSoDT().trim();
     }
     
     

@@ -1,0 +1,188 @@
+USE [QuanlyThuvien]
+GO
+/****** Object:  Table [dbo].[TRASACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[TRASACH]') AND type in (N'U'))
+DROP TABLE [dbo].[TRASACH]
+GO
+/****** Object:  Table [dbo].[SACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SACH]') AND type in (N'U'))
+DROP TABLE [dbo].[SACH]
+GO
+/****** Object:  Table [dbo].[PHIEUMUON]    Script Date: 3/9/2024 4:22:57 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[PHIEUMUON]') AND type in (N'U'))
+DROP TABLE [dbo].[PHIEUMUON]
+GO
+/****** Object:  Table [dbo].[MUONSACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[MUONSACH]') AND type in (N'U'))
+DROP TABLE [dbo].[MUONSACH]
+GO
+/****** Object:  Table [dbo].[HOCVIEN]    Script Date: 3/9/2024 4:22:57 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[HOCVIEN]') AND type in (N'U'))
+DROP TABLE [dbo].[HOCVIEN]
+GO
+/****** Object:  Table [dbo].[DAUSACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[DAUSACH]') AND type in (N'U'))
+DROP TABLE [dbo].[DAUSACH]
+GO
+/****** Object:  Table [dbo].[DAUSACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[DAUSACH](
+	[MADAUSACH] [char](10) NOT NULL,
+	[TENDAUSACH] [nvarchar](30) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MADAUSACH] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[HOCVIEN]    Script Date: 3/9/2024 4:22:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[HOCVIEN](
+	[MAHV] [char](10) NOT NULL,
+	[TENHV] [nvarchar](50) NOT NULL,
+	[SDT] [char](10) NULL,
+	[NGAYSINH] [date] NULL,
+	[DONVI] [char](10) NULL,
+	[GIOITINH] [nvarchar](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MAHV] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MUONSACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MUONSACH](
+	[MAPHIEU] [char](10) NULL,
+	[MASACH] [char](10) NULL,
+	[TRANGTHAI] [nvarchar](50) NULL,
+	[NGAYHENTRA] [date] NULL,
+	[NGAYTRA] [date] NULL,
+	[TRANGTHAITRA] [nvarchar](100) NULL
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[PHIEUMUON]    Script Date: 3/9/2024 4:22:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PHIEUMUON](
+	[MAPHIEU] [char](10) NOT NULL,
+	[NGAYMUON] [date] NULL,
+	[MAHV] [char](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MAPHIEU] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SACH](
+	[MASACH] [char](10) NOT NULL,
+	[TENSACH] [nvarchar](30) NULL,
+	[TRANGTHAI] [nvarchar](10) NULL,
+	[SOLUONG] [int] NULL,
+	[TENNXB] [nvarchar](30) NULL,
+	[TENTG] [nvarchar](30) NULL,
+	[MADAUSACH] [char](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[MASACH] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[TRASACH]    Script Date: 3/9/2024 4:22:57 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[TRASACH](
+	[MASACH] [char](10) NULL,
+	[MAHV] [char](10) NULL,
+	[TRANGTHAI] [nvarchar](50) NULL,
+	[NGAYTRA] [date] NULL
+) ON [PRIMARY]
+GO
+INSERT [dbo].[DAUSACH] ([MADAUSACH], [TENDAUSACH]) VALUES (N'DS01      ', N'Văn học')
+GO
+INSERT [dbo].[DAUSACH] ([MADAUSACH], [TENDAUSACH]) VALUES (N'DS02      ', N'Toán học')
+GO
+INSERT [dbo].[DAUSACH] ([MADAUSACH], [TENDAUSACH]) VALUES (N'DS03      ', N'Khoa học')
+GO
+INSERT [dbo].[DAUSACH] ([MADAUSACH], [TENDAUSACH]) VALUES (N'DS04      ', N'Lịch sử')
+GO
+INSERT [dbo].[DAUSACH] ([MADAUSACH], [TENDAUSACH]) VALUES (N'DS05      ', N'Triết học')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV001     ', N'Bùi Đăng Việt', N'0984324675', CAST(N'1999-10-28' AS Date), N'c153      ', N'Nam')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV002     ', N'Bùi Đăng Vũ', N'0984324874', CAST(N'1999-10-28' AS Date), N'c153      ', N'Nam')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV003     ', N'Nguyễn Đăng Long', N'0984841324', CAST(N'1998-11-28' AS Date), N'c153      ', N'Nữ')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV004     ', N'Phạm Thị Huệ', N'0976451342', CAST(N'1998-12-12' AS Date), N'c153      ', N'Nữ')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV005     ', N'Nguyễn Thị Son', N'0987652387', CAST(N'1998-12-10' AS Date), N'c153      ', N'Nữ')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV006     ', N'Nguyễn Văn Quang', N'097652886 ', CAST(N'1999-10-19' AS Date), N'c153      ', N'Nam')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV007     ', N'Phạm Quang Huy', N'0987656776', CAST(N'1999-01-23' AS Date), N'c153      ', N'Nam')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV008     ', N'Trần Ngọc Dũng', N'0986775771', CAST(N'1998-09-29' AS Date), N'c153      ', N'Nam')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV009     ', N'Nguyễn Đình Thọ', N'0987654672', CAST(N'1999-08-17' AS Date), N'c153      ', N'Nam')
+GO
+INSERT [dbo].[HOCVIEN] ([MAHV], [TENHV], [SDT], [NGAYSINH], [DONVI], [GIOITINH]) VALUES (N'HV010     ', N'Đặng Trọng Tiến', N'0987554352', CAST(N'1998-05-25' AS Date), N'c153      ', N'Nam')
+GO
+INSERT [dbo].[MUONSACH] ([MAPHIEU], [MASACH], [TRANGTHAI], [NGAYHENTRA], [NGAYTRA], [TRANGTHAITRA]) VALUES (N'PM001     ', N'BK001     ', N'Sách mới', CAST(N'2020-03-10' AS Date), CAST(N'2020-12-09' AS Date), N'OK')
+GO
+INSERT [dbo].[MUONSACH] ([MAPHIEU], [MASACH], [TRANGTHAI], [NGAYHENTRA], [NGAYTRA], [TRANGTHAITRA]) VALUES (N'PM002     ', N'BK002     ', N'Sách cũ', CAST(N'2020-03-10' AS Date), CAST(N'2020-12-09' AS Date), N'OK')
+GO
+INSERT [dbo].[MUONSACH] ([MAPHIEU], [MASACH], [TRANGTHAI], [NGAYHENTRA], [NGAYTRA], [TRANGTHAITRA]) VALUES (N'PM003     ', N'BK003     ', N'Sách cũ', CAST(N'2020-04-01' AS Date), NULL, N'OK')
+GO
+INSERT [dbo].[MUONSACH] ([MAPHIEU], [MASACH], [TRANGTHAI], [NGAYHENTRA], [NGAYTRA], [TRANGTHAITRA]) VALUES (N'PM004     ', N'BK001     ', N'Sách cũ', CAST(N'2020-12-12' AS Date), NULL, N'OK')
+GO
+INSERT [dbo].[PHIEUMUON] ([MAPHIEU], [NGAYMUON], [MAHV]) VALUES (N'PM001     ', CAST(N'2020-02-28' AS Date), N'HV001     ')
+GO
+INSERT [dbo].[PHIEUMUON] ([MAPHIEU], [NGAYMUON], [MAHV]) VALUES (N'PM002     ', CAST(N'2020-02-28' AS Date), N'HV002     ')
+GO
+INSERT [dbo].[PHIEUMUON] ([MAPHIEU], [NGAYMUON], [MAHV]) VALUES (N'PM003     ', CAST(N'2020-03-01' AS Date), N'HV003     ')
+GO
+INSERT [dbo].[PHIEUMUON] ([MAPHIEU], [NGAYMUON], [MAHV]) VALUES (N'PM004     ', CAST(N'2020-12-01' AS Date), N'HV003     ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK001     ', N'Văn học Việt Nam', N'Còn', 10, N'Kim Đồng', N'Bùi Thế Việt', N'DS01      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK002     ', N'Toán học', N'Còn', 20, N'Toán học Việt Nam', N'Nguyễn Thế Vịnh', N'DS02      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK003     ', N'Khoa học', N'Còn', 5, N'Khoa học vũ trụ', N'Alexander Pi', N'DS03      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK004     ', N'Lịch sử Việt Nam', N'Còn', 9, N'SGK Việt Nam', N'Tô Định', N'DS04      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK005     ', N'Triết học Mác-Lênin', N'Còn', 8, N'ĐHQGHN', N'Bùi Ngoan', N'DS05      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK006     ', N'Truyện Kiều', N'Còn', 15, N'Kim Đồng', N'Nguyễn Du', N'DS01      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK007     ', N'10 vạn câu hỏi vì sao', N'Còn', 10, N'NXBVN', N'Khoa Đặng', N'DS03      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK008     ', N'Đại Việt xưa', N'Còn', 4, N'ĐHQGHN', N'Trịnh Côn', N'DS04      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK009     ', N'Dế mèn phiêu lưu ký', N'Còn', 3, N'Kim Đồng', N'Tô Hoài', N'DS01      ')
+GO
+INSERT [dbo].[SACH] ([MASACH], [TENSACH], [TRANGTHAI], [SOLUONG], [TENNXB], [TENTG], [MADAUSACH]) VALUES (N'BK010     ', N'Tuổi trẻ', N'Còn', 5, N'Kim Đồng', N'Hoàng Đình Luân', N'DS01      ')
+GO
+INSERT [dbo].[TRASACH] ([MASACH], [MAHV], [TRANGTHAI], [NGAYTRA]) VALUES (N'BK001     ', N'HV001     ', N'OK', CAST(N'2020-12-09' AS Date))
+GO
+
+update [MUONSACH] set TRANGTHAITRA = N'CHƯA TRẢ' WHERE NGAYTRA IS NULL

@@ -45,4 +45,14 @@ public class FormPhieuMuonController  extends FormController{
     }
     
     
+    public static void saveDatas(FormPhieuMuon form) {
+        String maPhieu = form.maPhieuTextField1.getText();
+        String maHV = form.hocVienComboBox1.getSelectedItem().toString().split("-")[0].trim();
+        java.sql.Date ngayMuon = new java.sql.Date(form.ngayMuonDateChooser1.getDate().getTime());
+        String trangThai = form.trangThaiComboBox1.getSelectedItem().toString().trim();
+
+        PhieuMuon instancePM = new PhieuMuon(maPhieu, ngayMuon, maHV);
+        PhieuMuonUtils.saveInstance(instancePM, form.modifyMode);
+//        PhieuMuonUtils
+    }
 }
