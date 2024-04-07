@@ -5,10 +5,17 @@
  */
 package uit.team.controllers;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.List;
+import java.util.Objects;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JTextPane;
+import uit.team.QLMuonSachJFrame;
+import uit.team.QLPhieuMuonJFrame11;
 import uit.team.forms.FormPhieuMuon;
 import uit.team.models.businesses.HocVienUtils;
 import uit.team.models.businesses.PhieuMuonUtils;
@@ -44,6 +51,27 @@ public class FormPhieuMuonController  extends FormController{
         form.thongTinHVTextPane1.setText(fullHocVienInfos);
     }
     
+    public static void resetFunctionClose(FormPhieuMuon jFrame){
+        WindowListener listener = jFrame.getWindowListeners()[0];
+        if (!Objects.isNull(listener)){
+            jFrame.removeWindowListener(listener);
+        }
+        if (!jFrame.onGoingToNext) {
+            jFrame.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    new QLPhieuMuonJFrame11().setVisible(true);
+                }
+            });
+        } else {
+            jFrame.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    new QLMuonSachJFrame().setVisible(true);
+                }
+            });
+        }
+    }
     
     public static void saveDatas(FormPhieuMuon form) {
         String maPhieu = form.maPhieuTextField1.getText();

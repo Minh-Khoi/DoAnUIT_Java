@@ -5,17 +5,24 @@
  */
 package uit.team;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author USER
  */
-public class QLMuonSachJFrame  extends QLFrame {
-
+public class QLMuonSachJFrame  extends JFrame {
+    public String maPhieuMuon = "";
+    public boolean returnBack = true;
+    public boolean onGoingForward = false;
+    
     /**
      * Creates new form QLMuonSachJFrame
      */
     public QLMuonSachJFrame() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+
     }
 
     /**
@@ -46,7 +53,7 @@ public class QLMuonSachJFrame  extends QLFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Quản lý phiếu mượn");
+        jLabel1.setText("Quản lý  mượn sách");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

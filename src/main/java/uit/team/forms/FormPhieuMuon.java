@@ -17,6 +17,7 @@ import uit.team.controllers.FormPhieuMuonController;
  * @author USER
  */
 public class FormPhieuMuon  extends FormInsertUpdate {
+    public boolean onGoingToNext = false;
 
     /**
      * Creates new form FormPhieuMuon
@@ -72,6 +73,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         trangThaiLabel1 = new javax.swing.JLabel();
         trangThaiComboBox1 = new javax.swing.JComboBox<>();
         canvas1 = new java.awt.Canvas();
+        gotoQLMuonSachButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,6 +223,13 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                 .addContainerGap())
         );
 
+        gotoQLMuonSachButton1.setText("Đi đến quản lý mượn sách");
+        gotoQLMuonSachButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gotoQLMuonSachButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -229,6 +238,10 @@ public class FormPhieuMuon  extends FormInsertUpdate {
                 .addContainerGap(701, Short.MAX_VALUE)
                 .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(gotoQLMuonSachButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -240,7 +253,9 @@ public class FormPhieuMuon  extends FormInsertUpdate {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(342, Short.MAX_VALUE)
                 .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
+                .addGap(25, 25, 25)
+                .addComponent(gotoQLMuonSachButton1)
+                .addGap(23, 23, 23))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(27, Short.MAX_VALUE)
@@ -275,6 +290,13 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         String maHV = selectedHV.split("-")[0];
         FormPhieuMuonController.populateHocVienInfosTab(thongTinHVTextPane1, maHV);
     }//GEN-LAST:event_hocVienComboBox1ItemStateChanged
+
+    private void gotoQLMuonSachButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotoQLMuonSachButton1ActionPerformed
+        // TODO add your handling code here:
+        this.onGoingToNext = true;
+        FormPhieuMuonController.resetFunctionClose(this);
+        this.dispose();
+    }//GEN-LAST:event_gotoQLMuonSachButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,6 +336,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Canvas canvas1;
     private javax.swing.JLabel errorLabel1;
+    private javax.swing.JButton gotoQLMuonSachButton1;
     public javax.swing.JComboBox<String> hocVienComboBox1;
     private javax.swing.JLabel hocVienLabel;
     private javax.swing.JButton insertTab;

@@ -24,7 +24,6 @@ import uit.team.models.mssql.entities.PhieuMuon;
  * @author USER
  */
 public class QLPhieuMuonJFrame11 extends QLFrame {
-
     /**
      * Creates new form QLSachJFrame
      */
@@ -203,7 +202,7 @@ public class QLPhieuMuonJFrame11 extends QLFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QLHocVienJFrame().setVisible(true);
+                new QLPhieuMuonJFrame11().setVisible(true);
             }
         });
     }
