@@ -95,6 +95,6 @@ public class MuonSach implements EntityInterface {
     
     @Override
     public Object[] toPropertiesArray() {
-        return new Object[] {};
+        return new Object[] {this.maPhieu,this.maSach,this.trangThai,this.ngayHenTra,this.ngayTra,this.trangThaiTra};
     }
 }

@@ -67,7 +67,8 @@ public class FormPhieuMuonController  extends FormController{
             jFrame.addWindowListener(new WindowAdapter(){
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    new QLMuonSachJFrame().setVisible(true);
+                    String maPhieuMuon_ = System.getProperty("MAPHIEU");
+                    new QLMuonSachJFrame(maPhieuMuon_).setVisible(true);
                 }
             });
         }

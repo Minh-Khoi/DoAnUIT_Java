@@ -27,11 +27,26 @@ public class PhieuMuonUtils {
         } else {
             Map mapMuonSach = new HashMap();
             mapMuonSach.put("MAPHIEU", maPhieu);
-            List<MuonSach> muonDet = MuonSachDAO.readByCols(mapMuonSach);
-            if (Objects.isNull(muonDet) || muonDet.isEmpty()) {
+            List<MuonSach> muonDets = MuonSachDAO.readByCols(mapMuonSach);
+            if (Objects.isNull(muonDets) || muonDets.isEmpty()) {
                 return "Vô hiệu";
             } else {
-                return muonDet.get(0).getTrangThaiTra();
+                int soSachDaTra = 0;
+                int soSachChuaTra = 0;
+                for(MuonSach muon: muonDets){
+                    if(muon.getTrangThaiTra().trim().equals("OK")){
+                        soSachDaTra++;
+                    } else {
+                        soSachChuaTra++;
+                    }
+                }
+                if (soSachDaTra == muonDets.size()){
+                    return "OK";
+                } else if (soSachChuaTra == muonDets.size()){
+                    return "CHƯA TRẢ";
+                } else {
+                    return "CHƯA TRẢ HẾT";
+                }
             }
         }
     }

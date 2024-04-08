@@ -27,6 +27,13 @@ public class MuonSachUtils {
         return firstRec.getTrangThai();
     }
     
+    public static List<MuonSach>  findRecsByPhieuMuon(String maPhieuMuon){
+        Map map = new HashMap();
+        map.put("MAPHIEU", maPhieuMuon);
+        List<MuonSach> instances = MuonSachDAO.readByCols(map);
+        return instances;
+    }
+    
     public static void saveInstance(String maPhieu) {
         
     }

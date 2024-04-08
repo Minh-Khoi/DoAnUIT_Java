@@ -44,6 +44,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         FormPhieuMuonController.initHocVienCombobox(hocVienComboBox1);
         if(this.modifyMode){
             FormPhieuMuonController.populateDatas(this, prV);
+            this.gotoQLMuonSachButton1.setVisible(false);
         }
     }
     /**
@@ -294,8 +295,11 @@ public class FormPhieuMuon  extends FormInsertUpdate {
     private void gotoQLMuonSachButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotoQLMuonSachButton1ActionPerformed
         // TODO add your handling code here:
         this.onGoingToNext = true;
+        String maPhieuMuon = this.maPhieuTextField1.getText();
+        System.setProperty("MAPHIEU", maPhieuMuon);
         FormPhieuMuonController.resetFunctionClose(this);
         this.dispose();
+        System.out.println("gotoQLMuonSachButton1ActionPerformed executed");
     }//GEN-LAST:event_gotoQLMuonSachButton1ActionPerformed
 
     /**

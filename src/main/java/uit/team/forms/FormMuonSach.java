@@ -38,7 +38,7 @@ public class FormMuonSach extends FormInsertUpdate {
         ngayHenTraLabel2 = new javax.swing.JLabel();
         daTraLabel3 = new javax.swing.JLabel();
         trangThaiSachLabel4 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        daTraCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,8 +87,6 @@ public class FormMuonSach extends FormInsertUpdate {
 
         trangThaiSachLabel4.setText("Trạng thái sách");
 
-        jCheckBox1.setText("jCheckBox1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +104,7 @@ public class FormMuonSach extends FormInsertUpdate {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(daTraCheckBox1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(hocVienComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,8 +148,8 @@ public class FormMuonSach extends FormInsertUpdate {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(daTraLabel3)
-                    .addComponent(jCheckBox1))
-                .addGap(0, 141, Short.MAX_VALUE))
+                    .addComponent(daTraCheckBox1))
+                .addGap(0, 139, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(104, 104, 104)
@@ -219,11 +217,11 @@ public class FormMuonSach extends FormInsertUpdate {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox daTraCheckBox1;
     private javax.swing.JLabel daTraLabel3;
     private javax.swing.JLabel errorLabel1;
     public javax.swing.JComboBox<String> hocVienComboBox2;
     public javax.swing.JComboBox<String> hocVienComboBox3;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel ngayHenTraLabel2;
     public com.toedter.calendar.JDateChooser ngayMuonDateChooser2;
     private javax.swing.JLabel sachMuonLabel1;
