@@ -5,20 +5,43 @@
  */
 package uit.team.forms;
 
+import javax.swing.JFrame;
+import uit.team.controllers.FormMuonSachController;
+
 /**
  *
  * @author USER
  */
 public class FormMuonSach extends FormInsertUpdate {
     public String maPhieuMuon = "";
-    
+    public String maSach ;
     /**
      * Creates new form FormMuonSach
      */
-    public FormMuonSach() {
+    public FormMuonSach(String maPhieuMuon_) {
         initComponents();
+        this.maPhieuMuon = maPhieuMuon_;
+        initForm(false,"");
     }
-
+    public FormMuonSach(boolean modifyMode_, String selectedMaSach_,String maPhieuMuon_) {
+        initComponents();
+        this.maPhieuMuon = maPhieuMuon_;
+        initForm(modifyMode_,selectedMaSach_);
+    }
+    
+    
+    private void initForm(boolean modifyMode_, String selectedMaSach_){        
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        titleLabel1.setText(modifyMode_ ? "Chỉnh sửa Sách mượn" : "Thêm Sách mượn");
+        this.modifyMode = modifyMode_;
+        this.maSach = selectedMaSach_;
+        sachMuonComboBox2.setEnabled(!modifyMode);
+        FormMuonSachController.gotoQLMuonSachAfterDispose(this);
+        FormMuonSachController.populateSachMuonCombobox(sachMuonComboBox2, maPhieuMuon);
+        if(modifyMode_){
+            FormMuonSachController.populateDatas(this, maPhieuMuon, maSach);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,9 +54,9 @@ public class FormMuonSach extends FormInsertUpdate {
         submitButton1 = new javax.swing.JButton();
         titleLabel1 = new javax.swing.JLabel();
         errorLabel1 = new javax.swing.JLabel();
-        hocVienComboBox2 = new javax.swing.JComboBox<>();
-        ngayMuonDateChooser2 = new com.toedter.calendar.JDateChooser();
-        hocVienComboBox3 = new javax.swing.JComboBox<>();
+        sachMuonComboBox2 = new javax.swing.JComboBox<>();
+        ngayHenTraDateChooser2 = new com.toedter.calendar.JDateChooser();
+        trangThaiSachComboBox3 = new javax.swing.JComboBox<>();
         sachMuonLabel1 = new javax.swing.JLabel();
         ngayHenTraLabel2 = new javax.swing.JLabel();
         daTraLabel3 = new javax.swing.JLabel();
@@ -55,27 +78,27 @@ public class FormMuonSach extends FormInsertUpdate {
         errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
-        hocVienComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        hocVienComboBox2.addItemListener(new java.awt.event.ItemListener() {
+        sachMuonComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        sachMuonComboBox2.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                hocVienComboBox2ItemStateChanged(evt);
+                sachMuonComboBox2ItemStateChanged(evt);
             }
         });
-        hocVienComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        sachMuonComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hocVienComboBox2ActionPerformed(evt);
+                sachMuonComboBox2ActionPerformed(evt);
             }
         });
 
-        hocVienComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        hocVienComboBox3.addItemListener(new java.awt.event.ItemListener() {
+        trangThaiSachComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sách mới","Sách cũ" }));
+        trangThaiSachComboBox3.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                hocVienComboBox3ItemStateChanged(evt);
+                trangThaiSachComboBox3ItemStateChanged(evt);
             }
         });
-        hocVienComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        trangThaiSachComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hocVienComboBox3ActionPerformed(evt);
+                trangThaiSachComboBox3ActionPerformed(evt);
             }
         });
 
@@ -107,14 +130,14 @@ public class FormMuonSach extends FormInsertUpdate {
                         .addComponent(daTraCheckBox1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(hocVienComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sachMuonComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(151, 151, 151))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(hocVienComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ngayMuonDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(trangThaiSachComboBox3, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ngayHenTraDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
                         .addComponent(errorLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(77, 77, 77))))
@@ -135,15 +158,15 @@ public class FormMuonSach extends FormInsertUpdate {
                         .addComponent(errorLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hocVienComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sachMuonComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sachMuonLabel1))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ngayMuonDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ngayHenTraDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ngayHenTraLabel2))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hocVienComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(trangThaiSachComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(trangThaiSachLabel4))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -165,21 +188,21 @@ public class FormMuonSach extends FormInsertUpdate {
         
     }//GEN-LAST:event_submitButton1ActionPerformed
 
-    private void hocVienComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_hocVienComboBox2ItemStateChanged
+    private void sachMuonComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sachMuonComboBox2ItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_hocVienComboBox2ItemStateChanged
+    }//GEN-LAST:event_sachMuonComboBox2ItemStateChanged
 
-    private void hocVienComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hocVienComboBox2ActionPerformed
+    private void sachMuonComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sachMuonComboBox2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_hocVienComboBox2ActionPerformed
+    }//GEN-LAST:event_sachMuonComboBox2ActionPerformed
 
-    private void hocVienComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_hocVienComboBox3ItemStateChanged
+    private void trangThaiSachComboBox3ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_trangThaiSachComboBox3ItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_hocVienComboBox3ItemStateChanged
+    }//GEN-LAST:event_trangThaiSachComboBox3ItemStateChanged
 
-    private void hocVienComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hocVienComboBox3ActionPerformed
+    private void trangThaiSachComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trangThaiSachComboBox3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_hocVienComboBox3ActionPerformed
+    }//GEN-LAST:event_trangThaiSachComboBox3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,16 +240,16 @@ public class FormMuonSach extends FormInsertUpdate {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox daTraCheckBox1;
+    public javax.swing.JCheckBox daTraCheckBox1;
     private javax.swing.JLabel daTraLabel3;
     private javax.swing.JLabel errorLabel1;
-    public javax.swing.JComboBox<String> hocVienComboBox2;
-    public javax.swing.JComboBox<String> hocVienComboBox3;
+    public com.toedter.calendar.JDateChooser ngayHenTraDateChooser2;
     private javax.swing.JLabel ngayHenTraLabel2;
-    public com.toedter.calendar.JDateChooser ngayMuonDateChooser2;
+    public javax.swing.JComboBox<String> sachMuonComboBox2;
     private javax.swing.JLabel sachMuonLabel1;
     private javax.swing.JButton submitButton1;
     private javax.swing.JLabel titleLabel1;
+    public javax.swing.JComboBox<String> trangThaiSachComboBox3;
     private javax.swing.JLabel trangThaiSachLabel4;
     // End of variables declaration//GEN-END:variables
 }

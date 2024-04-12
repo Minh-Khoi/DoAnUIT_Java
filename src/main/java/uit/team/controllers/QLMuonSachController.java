@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import uit.team.QLMuonSachJFrame;
 import uit.team.QLPhieuMuonJFrame11;
+import uit.team.forms.FormPhieuMuon;
 import uit.team.models.businesses.MuonSachUtils;
 import uit.team.models.mssql.entities.MuonSach;
 
@@ -24,16 +25,16 @@ import uit.team.models.mssql.entities.MuonSach;
  */
 public class QLMuonSachController {
     
-    public static void gotoHomeFrameAfterDispose(JFrame jFrame){
+    public static void gotoFormPhieuMuonAfterDispose(JFrame jFrame){
         jFrame.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosed(WindowEvent e) {
                 QLMuonSachJFrame targ = (QLMuonSachJFrame)e.getComponent();
                 if (targ.returnBack){
-                    new QLPhieuMuonJFrame11().setVisible(true);                    
+                    new FormPhieuMuon(true,targ.maPhieuMuon).setVisible(true);                    
                 }
             }
-        });
+        }); 
     }
     
     public static void initDatas(JTable jTable1, String maPhieuMuon) {

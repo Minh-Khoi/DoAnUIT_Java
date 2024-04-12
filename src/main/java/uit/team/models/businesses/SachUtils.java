@@ -5,6 +5,9 @@
  */
 package uit.team.models.businesses;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import uit.team.models.mssql.dao.SachDAO;
 import uit.team.models.mssql.entities.Sach;
 
@@ -22,5 +25,18 @@ public class SachUtils {
             instance.setMaSach(newPrV);
             SachDAO.insert(instance);
         }
+    }
+    
+    public static List<String> queryAllForCombobox(){
+        List<Sach> listSachs = SachDAO.readAll();
+        List<String> listResults = new ArrayList<>();
+        for(Sach sach : listSachs){
+            String infos = formatSachMuonForCbbox(sach);
+            listResults.add(infos);
+        }
+        return listResults;
+    }
+    public static String formatSachMuonForCbbox(Sach sach){
+        return sach.getMaSach().trim()+"-"+sach.getTenSach()+"-"+sach.getTenNXB()+"-"+sach.getTenTG();
     }
 }

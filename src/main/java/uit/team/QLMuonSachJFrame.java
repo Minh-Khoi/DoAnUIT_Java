@@ -6,7 +6,10 @@
 package uit.team;
 
 import javax.swing.JFrame;
+import uit.team.controllers.QLController;
 import uit.team.controllers.QLMuonSachController;
+import uit.team.forms.FormInsertUpdate;
+import uit.team.forms.FormMuonSach;
 
 /**
  *
@@ -21,15 +24,15 @@ public class QLMuonSachJFrame  extends JFrame {
      */
     public QLMuonSachJFrame() {
         initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
-
     }
 
     
-    public QLMuonSachJFrame(String maPhieuMuon) {
+    public QLMuonSachJFrame(String maPhieuMuon_) {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
+        this.maPhieuMuon = maPhieuMuon_;
         QLMuonSachController.initDatas(jTable1, maPhieuMuon);
+        QLMuonSachController.gotoFormPhieuMuonAfterDispose(this);
         System.clearProperty("MAPHIEU");
     }
     
@@ -141,12 +144,23 @@ public class QLMuonSachJFrame  extends JFrame {
 
     private void insertActionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionActionPerformed
         // TODO add your handling code here:
-        
+        this.returnBack = false;
+        FormInsertUpdate form = new FormMuonSach(this.maPhieuMuon);
+        form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_insertActionActionPerformed
 
     private void modifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyActionPerformed
         // TODO add your handling code here:
-        
+        String selectedMaSach = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedMaSach.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedMaSach);
+        } else {
+            FormInsertUpdate form = new FormMuonSach(true,selectedMaSach,this.maPhieuMuon);
+            form.setVisible(true);
+            this.returnBack = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_modifyActionPerformed
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed

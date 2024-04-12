@@ -44,6 +44,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
         FormPhieuMuonController.initHocVienCombobox(hocVienComboBox1);
         if(this.modifyMode){
             FormPhieuMuonController.populateDatas(this, prV);
+        } else {
             this.gotoQLMuonSachButton1.setVisible(false);
         }
     }
