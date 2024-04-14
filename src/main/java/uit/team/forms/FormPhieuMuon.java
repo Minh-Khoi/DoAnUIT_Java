@@ -132,7 +132,7 @@ public class FormPhieuMuon  extends FormInsertUpdate {
 
         trangThaiLabel1.setText("Trangj  thái");
 
-        trangThaiComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OK","Vô hiệu","CHƯA TRẢ" }));
+        trangThaiComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OK","Vô hiệu","CHƯA TRẢ","CHƯA TRẢ HẾT" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

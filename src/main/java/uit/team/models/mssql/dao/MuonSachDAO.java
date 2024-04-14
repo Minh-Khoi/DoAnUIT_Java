@@ -178,6 +178,21 @@ public class MuonSachDAO {
     }
     
     
+    public static int updateTrangThaiTraByPhieuMuon(String maPhieuMuon, String trangThaiTra){
+        connectDB();
+        String sql = "UPDATE MUONSACH SET  TRANGTHAITRA=? , NGAYTRA = ? WHERE  MAPHIEU=? ";
+        try(PreparedStatement preStmt = conn.prepareStatement(sql)) {
+            preStmt.setString(1, trangThaiTra);
+            preStmt.setDate(2, (trangThaiTra.equals("OK"))? new Date(new java.util.Date().getTime()) : null);
+            preStmt.setString(3, maPhieuMuon);
+            int updated = preStmt.executeUpdate();
+            System.out.println("Update " +updated+ " record(s) successfully ");
+            return updated;
+        } catch (SQLException ex) {
+            Logger.getLogger(DauSachDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
 
 //    public static void main(String[] args) {
 //        String maPhieu="PM003";

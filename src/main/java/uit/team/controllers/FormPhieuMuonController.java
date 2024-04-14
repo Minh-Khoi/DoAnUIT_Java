@@ -18,6 +18,7 @@ import uit.team.QLMuonSachJFrame;
 import uit.team.QLPhieuMuonJFrame11;
 import uit.team.forms.FormPhieuMuon;
 import uit.team.models.businesses.HocVienUtils;
+import uit.team.models.businesses.MuonSachUtils;
 import uit.team.models.businesses.PhieuMuonUtils;
 import uit.team.models.mssql.dao.PhieuMuonDAO;
 import uit.team.models.mssql.entities.HocVien;
@@ -78,10 +79,10 @@ public class FormPhieuMuonController  extends FormController{
         String maPhieu = form.maPhieuTextField1.getText();
         String maHV = form.hocVienComboBox1.getSelectedItem().toString().split("-")[0].trim();
         java.sql.Date ngayMuon = new java.sql.Date(form.ngayMuonDateChooser1.getDate().getTime());
-        String trangThai = form.trangThaiComboBox1.getSelectedItem().toString().trim();
+        String trangThaiTra = form.trangThaiComboBox1.getSelectedItem().toString().trim();
 
         PhieuMuon instancePM = new PhieuMuon(maPhieu, ngayMuon, maHV);
         PhieuMuonUtils.saveInstance(instancePM, form.modifyMode);
-//        PhieuMuonUtils
+        MuonSachUtils.updateTrangThaiTraByPhieuMuon(maPhieu, trangThaiTra);
     }
 }

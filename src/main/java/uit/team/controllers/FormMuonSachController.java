@@ -7,6 +7,7 @@ package uit.team.controllers;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +38,20 @@ public class FormMuonSachController {
             MuonSach muonSach = muonSachList.get(0);
             form.trangThaiSachComboBox3.setSelectedItem(muonSach.getTrangThai().trim());
             form.daTraCheckBox1.setSelected(muonSach.getTrangThaiTra().trim().equals("OK"));
+            form.ngayHenTraDateChooser2.setDate(muonSach.getNgayHenTra());
+            if(!Objects.isNull(muonSach.getNgayTra())){
+                form.ngayTraSachDateChooser3.setDate(muonSach.getNgayTra());
+            }
         }
         Sach sach = SachDAO.readByPrimaryKey(maSach);
         if(!Objects.isNull(sach)){
             form.sachMuonComboBox2.setSelectedItem(SachUtils.formatSachMuonForCbbox(sach));
         }
+    }
+    
+    public static void showFieldNgayTra(FormMuonSach form){
+        form.ngayTraSachLabel1.setVisible(form.daTraCheckBox1.isSelected());
+        form.ngayTraSachDateChooser3.setVisible(form.daTraCheckBox1.isSelected());
     }
     
     public static void gotoQLMuonSachAfterDispose(JFrame jFrame){
@@ -58,5 +68,22 @@ public class FormMuonSachController {
         List<String> resultList = SachUtils.queryAllForCombobox();
         DefaultComboBoxModel model = new DefaultComboBoxModel<>(resultList.toArray());
         sachMuonCbbox.setModel(model);
+    }
+    
+    public static void saveDatas(FormMuonSach form) {
+        String maPhieuMuon = form.maPhieuMuon;
+        String maSach = form.sachMuonComboBox2.getSelectedItem().toString().split("-")[0].trim();
+        String trangThaiSach = form.trangThaiSachComboBox3.getSelectedItem().toString().trim();
+        Date ngayHenTra = new Date(form.ngayHenTraDateChooser2.getDate().getTime());
+        boolean checkTraSach = form.daTraCheckBox1.isSelected();
+        String trangThaiTra = (checkTraSach) ? "OK" : "CHƯA TRẢ";
+        Date ngayTra = null;
+        if(checkTraSach){
+            if (!Objects.isNull(form.ngayTraSachDateChooser3.getDate()) ) {
+                ngayTra = new Date(form.ngayTraSachDateChooser3.getDate().getTime() );
+            }
+        }
+        MuonSach instance = new MuonSach(maPhieuMuon, maSach, trangThaiSach, ngayHenTra, ngayTra, trangThaiTra);
+        MuonSachUtils.saveInstance(instance, form.modifyMode);
     }
 }

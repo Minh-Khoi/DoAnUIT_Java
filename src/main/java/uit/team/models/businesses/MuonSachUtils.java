@@ -34,7 +34,23 @@ public class MuonSachUtils {
         return instances;
     }
     
-    public static void saveInstance(String maPhieu) {
-        
+    public static void saveInstance(MuonSach instance, boolean modifyMode_) {
+        if(modifyMode_){
+            MuonSachDAO.update(instance);
+        } else {
+//            String newPrV = HocVienDAO.generateNewPrimaryValue();
+//            instance.setMaHV(newPrV);
+            MuonSachDAO.insert(instance);
+        }
+    }
+    
+    public static void updateTrangThaiTraByPhieuMuon(String maPhieuMuon, String trangThaiTra){
+        if(trangThaiTra.equals("OK") || trangThaiTra.equals("CHƯA TRẢ")){
+            MuonSachDAO.updateTrangThaiTraByPhieuMuon(maPhieuMuon, trangThaiTra);
+        } else if(trangThaiTra.equals("Vô hiệu")){
+            MuonSachDAO.deleteByForeignKey("MAPHIEU", maPhieuMuon);
+        } else { // trangThaiTra.equals("CHƯA TRẢ HẾT")
+            // do nothing
+        }
     }
 }
