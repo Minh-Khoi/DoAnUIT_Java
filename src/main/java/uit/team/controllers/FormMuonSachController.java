@@ -81,6 +81,8 @@ public class FormMuonSachController {
         if(checkTraSach){
             if (!Objects.isNull(form.ngayTraSachDateChooser3.getDate()) ) {
                 ngayTra = new Date(form.ngayTraSachDateChooser3.getDate().getTime() );
+            } else {
+                ngayTra = new Date(new java.util.Date().getTime());
             }
         }
         MuonSach instance = new MuonSach(maPhieuMuon, maSach, trangThaiSach, ngayHenTra, ngayTra, trangThaiTra);

@@ -209,7 +209,7 @@ public class QLMuonSachJFrame  extends JFrame {
     private javax.swing.JButton insertAction;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     private javax.swing.JButton modify;
     // End of variables declaration//GEN-END:variables
 }

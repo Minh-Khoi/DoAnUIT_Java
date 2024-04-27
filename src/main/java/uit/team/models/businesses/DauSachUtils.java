@@ -6,11 +6,16 @@
 package uit.team.models.businesses;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import javax.swing.JComboBox;
 import uit.team.models.mssql.dao.DauSachDAO;
+import uit.team.models.mssql.dao.SachDAO;
 import uit.team.models.mssql.entities.DauSach;
+import uit.team.models.mssql.entities.MuonSach;
+import uit.team.models.mssql.entities.Sach;
 
 /**
  *
@@ -44,5 +49,19 @@ public class DauSachUtils {
         } else {
             return true;
         }
+    }
+    
+    public static List<MuonSach>  sachMuonChuaTra(String maDS) {
+        Map map = new HashMap();
+        map.put("MADAUSACH", maDS);
+        List<Sach> sachs = SachDAO.readByCols(map);
+        List<MuonSach> totalMsChuaTra = new ArrayList<>();
+        for(Sach sach : sachs){
+            List<MuonSach> muonSachChuaTra = SachUtils.sachChuaTraXong(sach.getMaSach());
+            if(muonSachChuaTra.size() > 0){
+                totalMsChuaTra.addAll(muonSachChuaTra);
+            }
+        }
+        return totalMsChuaTra;
     }
 }

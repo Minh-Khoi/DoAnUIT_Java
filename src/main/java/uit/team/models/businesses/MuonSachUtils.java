@@ -16,16 +16,16 @@ import uit.team.models.mssql.entities.MuonSach;
  * @author USER
  */
 public class MuonSachUtils {
-    public static String checkTrangThaiPhieu(String maPhieu) {
-        Map map = new HashMap();
-        map.put("MAPHIEU", maPhieu);
-        List<MuonSach> muonSachRecs = MuonSachDAO.readByCols(map);
-        if (muonSachRecs.isEmpty()){
-            return "Vô hiệu";
-        }
-        MuonSach firstRec = muonSachRecs.get(0);
-        return firstRec.getTrangThai();
-    }
+//    public static String checkTrangThaiPhieu(String maPhieu) {
+//        Map map = new HashMap();
+//        map.put("MAPHIEU", maPhieu);
+//        List<MuonSach> muonSachRecs = MuonSachDAO.readByCols(map);
+//        if (muonSachRecs.isEmpty()){
+//            return "Vô hiệu";
+//        }
+//        MuonSach firstRec = muonSachRecs.get(0);
+//        return firstRec.getTrangThai();
+//    }
     
     public static List<MuonSach>  findRecsByPhieuMuon(String maPhieuMuon){
         Map map = new HashMap();

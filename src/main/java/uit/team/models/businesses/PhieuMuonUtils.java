@@ -5,6 +5,7 @@
  */
 package uit.team.models.businesses;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,4 +62,21 @@ public class PhieuMuonUtils {
             PhieuMuonDAO.insert(instance);
         }
     }
+    
+    public static List<PhieuMuon> hocVienChuaTraSach(String maHV) {
+        Map map = new HashMap();
+        map.put("MAHV", maHV);
+        List<PhieuMuon> pms = PhieuMuonDAO.readByCols(map);
+        List<PhieuMuon> pmChuaTra = new ArrayList<>();
+        if( !pms.isEmpty() ){
+            for(PhieuMuon pm : pms){
+                String trangThaiPM = getTrangThaiPhieuMuon(pm.getMaPhieu());
+                if(!trangThaiPM.equals("OK") && !trangThaiPM.equals("Vô hiệu")){
+                    pmChuaTra.add(pm);
+                }
+            }
+        }
+        return pmChuaTra;
+    }
+    
 }

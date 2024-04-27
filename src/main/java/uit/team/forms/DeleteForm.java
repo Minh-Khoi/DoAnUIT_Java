@@ -7,12 +7,26 @@ package uit.team.forms;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 import uit.team.HomeFrame;
 import uit.team.QLDauSachJFrame1;
 import uit.team.QLHocVienJFrame;
+import uit.team.QLMuonSachJFrame;
 import uit.team.QLPhieuMuonJFrame11;
 import uit.team.QLSachJFrame1;
+import uit.team.models.businesses.DauSachUtils;
+import uit.team.models.businesses.PhieuMuonUtils;
+import uit.team.models.businesses.SachUtils;
+import uit.team.models.mssql.dao.DauSachDAO;
+import uit.team.models.mssql.dao.HocVienDAO;
+import uit.team.models.mssql.dao.MuonSachDAO;
+import uit.team.models.mssql.dao.PhieuMuonDAO;
+import uit.team.models.mssql.dao.SachDAO;
+import uit.team.models.mssql.entities.HocVien;
+import uit.team.models.mssql.entities.MuonSach;
+import uit.team.models.mssql.entities.PhieuMuon;
 
 /**
  *
@@ -80,6 +94,7 @@ public class DeleteForm extends javax.swing.JFrame {
         deleteButton1 = new javax.swing.JButton();
         notDeleteButton2 = new javax.swing.JButton();
         moreTextLabel2 = new javax.swing.JLabel();
+        errorLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,8 +108,15 @@ public class DeleteForm extends javax.swing.JFrame {
         });
 
         notDeleteButton2.setText("Không");
+        notDeleteButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notDeleteButton2ActionPerformed(evt);
+            }
+        });
 
         moreTextLabel2.setText("jLabel2");
+
+        errorLabel3.setForeground(new java.awt.Color(0, 153, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +125,7 @@ public class DeleteForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(errorLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(moreTextLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,7 +134,7 @@ public class DeleteForm extends javax.swing.JFrame {
                             .addComponent(deleteButton1)
                             .addGap(89, 89, 89)
                             .addComponent(notDeleteButton2))))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,15 +147,102 @@ public class DeleteForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deleteButton1)
                     .addComponent(notDeleteButton2))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(errorLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButton1ActionPerformed
-        // TODO add your handling code here:
+        if(previousFrame instanceof QLHocVienJFrame){
+            JTable jtable1 = ((QLHocVienJFrame)this.previousFrame).jTable1;
+            String prV = jtable1.getValueAt(jtable1.getSelectedRow(), 0).toString();
+            List<PhieuMuon> pmsChuaTra = PhieuMuonUtils.hocVienChuaTraSach(prV);
+            if (!pmsChuaTra.isEmpty()){
+                StringBuilder errMessSB = new StringBuilder();
+                errMessSB.append("Học viên chưa trả sách. Không xóa được!!\n Tra cứu mã phiếu mượn: ");
+                for(PhieuMuon pm : pmsChuaTra){
+                    errMessSB.append(pm.getMaPhieu()).append("; ");
+                }
+                this.errorLabel3.setText("<html><p style=\"white-space: wrap;\">"+errMessSB.toString()+ "</p></html>");
+//                System.out.println(errMessSB.toString());
+            } else {
+                int deleted = HocVienDAO.delete(prV);
+                if (deleted == 0){
+                    this.errorLabel3.setText("No object to delete");
+                } else {
+                    this.dispose();
+                }
+            }            
+        } else if(previousFrame instanceof QLDauSachJFrame1){
+            JTable jtable1 = ((QLDauSachJFrame1)this.previousFrame).jTable1;
+            String prV = jtable1.getValueAt(jtable1.getSelectedRow(), 0).toString();
+            List<MuonSach> mssChuaTra = DauSachUtils.sachMuonChuaTra(prV);
+            if (!mssChuaTra.isEmpty()){
+                StringBuilder errMessSB = new StringBuilder();
+                errMessSB.append("Còn sách mượn chưa trả. Chưa thể xóa!! Tra cứu các Mã phiếu - Mã sách sau:  ");
+                for (MuonSach ms : mssChuaTra){
+                    errMessSB.append(ms.getMaPhieu()).append("-").append(ms.getMaSach()).append("; ");
+                }
+                this.errorLabel3.setText("<html><p style=\"white-space: wrap;\">"+errMessSB.toString()+ "</p></html>");
+            } else {
+                int deleted = DauSachDAO.delete(prV);
+                if (deleted == 0){
+                    this.errorLabel3.setText("No object to delete");
+                } else {
+                    SachDAO.deleteByDauSach(prV);
+                    this.dispose();
+                }
+            }
+        } else if(previousFrame instanceof QLSachJFrame1){
+            JTable jtable1 = ((QLSachJFrame1)this.previousFrame).jTable1;
+            String prV = jtable1.getValueAt(jtable1.getSelectedRow(), 0).toString();
+            List<MuonSach> mssChuaTra = SachUtils.sachChuaTraXong(prV);
+            if(!mssChuaTra.isEmpty()){
+                StringBuilder errMessSB = new StringBuilder();
+                errMessSB.append("Còn sách mượn chưa trả. Chưa thể xóa!! Tra cứu các Mã phiếu - Mã sách sau:  ");
+                for (MuonSach ms : mssChuaTra){
+                    errMessSB.append(ms.getMaPhieu()).append("-").append(ms.getMaSach()).append("; ");
+                }
+                this.errorLabel3.setText("<html><p style=\"white-space: wrap;\">"+errMessSB.toString()+ "</p></html>");
+            } else {
+                int deleted = SachDAO.delete(prV);
+                if (deleted == 0){
+                    this.errorLabel3.setText("No object to delete");
+                } else {
+
+                    this.dispose();
+                }
+            }            
+        }else if(previousFrame instanceof QLPhieuMuonJFrame11){
+            JTable jtable1 = ((QLPhieuMuonJFrame11)this.previousFrame).jTable1;
+            String prV = jtable1.getValueAt(jtable1.getSelectedRow(), 0).toString();
+            int deletedPhieuMuon = PhieuMuonDAO.delete(prV);
+            if (deletedPhieuMuon == 0){
+                this.errorLabel3.setText("No object to delete");
+            } else {
+                MuonSachDAO.deleteByForeignKey("MAPHIEU", prV);
+                this.dispose();
+            }
+        }else if(previousFrame instanceof QLMuonSachJFrame){
+            JTable jtable1 = ((QLMuonSachJFrame)this.previousFrame).jTable1;
+            String maSachMuon = jtable1.getValueAt(jtable1.getSelectedRow(), 0).toString();
+            String maPhieuMuon = ((QLMuonSachJFrame)this.previousFrame).maPhieuMuon;
+            int deleted = MuonSachDAO.delete(maPhieuMuon, maSachMuon);
+            if (deleted == 0){
+                this.errorLabel3.setText("No object to delete");
+            } else {
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_deleteButton1ActionPerformed
+
+    private void notDeleteButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notDeleteButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_notDeleteButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +281,7 @@ public class DeleteForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton deleteButton1;
+    private javax.swing.JLabel errorLabel3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel moreTextLabel2;
     private javax.swing.JButton notDeleteButton2;

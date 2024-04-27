@@ -7,8 +7,12 @@ package uit.team.models.businesses;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import uit.team.models.mssql.dao.MuonSachDAO;
 import uit.team.models.mssql.dao.SachDAO;
+import uit.team.models.mssql.entities.MuonSach;
 import uit.team.models.mssql.entities.Sach;
 
 /**
@@ -38,5 +42,21 @@ public class SachUtils {
     }
     public static String formatSachMuonForCbbox(Sach sach){
         return sach.getMaSach().trim()+"-"+sach.getTenSach()+"-"+sach.getTenNXB()+"-"+sach.getTenTG();
+    }
+    
+    
+    public static List<MuonSach> sachChuaTraXong(String maSach){
+        Map map = new HashMap();
+        map.put("MASACH", maSach);
+        List<MuonSach> mss = MuonSachDAO.readByCols(map);
+        List<MuonSach> mssChuaTra = new ArrayList<>();
+        if(!mss.isEmpty()){
+            for(MuonSach ms : mss){
+                if (!ms.getTrangThaiTra().equals("OK")){
+                    mssChuaTra.add(ms);
+                }
+            }
+        }
+        return mssChuaTra;
     }
 }
