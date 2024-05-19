@@ -8,6 +8,7 @@ package uit.team;
 import javax.swing.JFrame;
 import uit.team.controllers.QLController;
 import uit.team.controllers.QLMuonSachController;
+import uit.team.forms.DeleteForm;
 import uit.team.forms.FormInsertUpdate;
 import uit.team.forms.FormMuonSach;
 
@@ -105,7 +106,7 @@ public class QLMuonSachJFrame  extends JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(insertAction, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -166,7 +167,15 @@ public class QLMuonSachJFrame  extends JFrame {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         // TODO add your handling code here:
-        
+        String selectedPrV = QLController.getSelectedRowFirstCell(jTable1);
+        if (selectedPrV.startsWith("ERR:")){
+            this.errorLabel1.setText(selectedPrV);
+        } else {
+            JFrame deleteForm = new DeleteForm(this);
+            deleteForm.setVisible(true);
+            this.returnBack = false;
+            this.dispose();
+        }
     }//GEN-LAST:event_deleteActionPerformed
 
     /**

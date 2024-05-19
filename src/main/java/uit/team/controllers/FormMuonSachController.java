@@ -70,6 +70,14 @@ public class FormMuonSachController {
         sachMuonCbbox.setModel(model);
     }
     
+    public static boolean validateBeforeSaving(FormMuonSach form) {
+        if (Objects.isNull(form.ngayHenTraDateChooser2.getDate()) ){
+            form.errorLabel1.setText("ERR: Thiếu ngày hẹn trả");
+            return false;
+        }
+        return true;
+    }
+    
     public static void saveDatas(FormMuonSach form) {
         String maPhieuMuon = form.maPhieuMuon;
         String maSach = form.sachMuonComboBox2.getSelectedItem().toString().split("-")[0].trim();

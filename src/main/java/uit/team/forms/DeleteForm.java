@@ -78,6 +78,15 @@ public class DeleteForm extends javax.swing.JFrame {
                     new QLSachJFrame1().setVisible(true);
                 }
             });
+        }else if(previousFrame instanceof QLMuonSachJFrame){
+            addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    String maphieumuon = System.getProperty("MAPHIEU_");
+                    System.clearProperty("MAPHIEU_");
+                    new QLMuonSachJFrame(maphieumuon).setVisible(true);
+                }
+            });
         }
     }
 
@@ -232,6 +241,8 @@ public class DeleteForm extends javax.swing.JFrame {
             if (deleted == 0){
                 this.errorLabel3.setText("No object to delete");
             } else {
+                System.setProperty("MAPHIEU_", maPhieuMuon);
+                System.out.println(Thread.currentThread().getName());
                 this.dispose();
             }
         }

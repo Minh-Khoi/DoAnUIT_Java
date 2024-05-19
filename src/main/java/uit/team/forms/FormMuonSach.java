@@ -206,8 +206,12 @@ public class FormMuonSach extends FormInsertUpdate {
 
     private void submitButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButton1ActionPerformed
         // TODO add your handling code here:
-        FormMuonSachController.saveDatas(this);
-        this.dispose();
+        boolean validInputs = FormMuonSachController.validateBeforeSaving(this);
+        if (validInputs){
+            FormMuonSachController.saveDatas(this);
+            this.dispose();
+        }
+
     }//GEN-LAST:event_submitButton1ActionPerformed
 
     private void sachMuonComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sachMuonComboBox2ItemStateChanged
@@ -269,7 +273,7 @@ public class FormMuonSach extends FormInsertUpdate {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JCheckBox daTraCheckBox1;
     private javax.swing.JLabel daTraLabel3;
-    private javax.swing.JLabel errorLabel1;
+    public javax.swing.JLabel errorLabel1;
     public com.toedter.calendar.JDateChooser ngayHenTraDateChooser2;
     private javax.swing.JLabel ngayHenTraLabel2;
     public com.toedter.calendar.JDateChooser ngayTraSachDateChooser3;

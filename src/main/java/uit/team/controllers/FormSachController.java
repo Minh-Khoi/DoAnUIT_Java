@@ -34,7 +34,7 @@ public class FormSachController extends FormController{
         form.maTextField1.setText(instance.getMaSach());
         form.tenTextField2.setText(instance.getTenSach());
         form.soLuongTextField3.setText(String.valueOf(instance.getSoLuong()));
-        form.tenNxbTextField6.setText(instance.getTenSach());
+        form.tenNxbTextField6.setText(instance.getTenNXB());
         form.tenTextField2.setText(instance.getTenSach());
         form.tenTacGiaTextField8.setText(instance.getTenTG());
         form.trangThaiTextField4.setText(instance.getTrangThai());
