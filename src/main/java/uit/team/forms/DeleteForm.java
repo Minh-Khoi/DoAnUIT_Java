@@ -98,7 +98,7 @@ public class DeleteForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Bạn chắc chắn muốn xóa <object> này chứ?");
+        jLabel1.setText("Bạn chắc chắn muốn xóa đối tượng này chứ?");
 
         deleteButton1.setText("Xóa");
         deleteButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,8 +113,6 @@ public class DeleteForm extends javax.swing.JFrame {
                 notDeleteButton2ActionPerformed(evt);
             }
         });
-
-        moreTextLabel2.setText("jLabel2");
 
         errorLabel3.setForeground(new java.awt.Color(0, 153, 0));
 

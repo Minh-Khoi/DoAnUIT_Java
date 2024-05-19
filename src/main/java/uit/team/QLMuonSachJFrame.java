@@ -31,6 +31,7 @@ public class QLMuonSachJFrame  extends JFrame {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE) ;
         this.maPhieuMuon = maPhieuMuon_;
+        this.jLabel1.setText("Quản lý  mượn sách Phiếu mượn: " + maPhieuMuon_);
         QLMuonSachController.initDatas(jTable1, maPhieuMuon);
         QLMuonSachController.gotoFormPhieuMuonAfterDispose(this);
         System.clearProperty("MAPHIEU");
@@ -55,7 +56,7 @@ public class QLMuonSachJFrame  extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        insertAction.setText("Thêm Phiếu");
+        insertAction.setText("Thêm Sách");
         insertAction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertActionActionPerformed(evt);
@@ -64,7 +65,7 @@ public class QLMuonSachJFrame  extends JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Quản lý  mượn sách");
+        jLabel1.setText("Quản lý  mượn sách Phiếu mượn:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

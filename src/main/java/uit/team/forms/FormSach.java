@@ -73,7 +73,6 @@ public class FormSach  extends FormInsertUpdate {
         tenNxbTextField6 = new javax.swing.JTextField();
         tenTacGiaTextField8 = new javax.swing.JTextField();
         dauSachComboBox1 = new javax.swing.JComboBox<>();
-        actionDauSachButton1 = new javax.swing.JButton();
         errorLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -130,13 +129,6 @@ public class FormSach  extends FormInsertUpdate {
 
         dauSachComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        actionDauSachButton1.setText("Thêm/Sửa Đầu sách");
-        actionDauSachButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actionDauSachButton1ActionPerformed(evt);
-            }
-        });
-
         errorLabel1.setFont(new java.awt.Font("Dialog", 3, 14)); // NOI18N
         errorLabel1.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -145,21 +137,28 @@ public class FormSach  extends FormInsertUpdate {
         maSachLayout.setHorizontalGroup(
             maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(maSachLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(maSachLayout.createSequentialGroup()
-                        .addComponent(insertTab, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(146, 146, 146)
-                        .addComponent(modifyTab, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(maSachLayout.createSequentialGroup()
+                                .addComponent(insertTab, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(146, 146, 146)
+                                .addComponent(modifyTab, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(maSachLayout.createSequentialGroup()
                         .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(maLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(soLuongLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tenNxbLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tenTacGiaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dauSachLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(trangThaiLatbel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(maSachLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(maLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(soLuongLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tenNxbLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tenTacGiaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dauSachLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(maSachLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(trangThaiLatbel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(29, 29, 29)
                         .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(maTextField1)
@@ -176,17 +175,12 @@ public class FormSach  extends FormInsertUpdate {
                         .addContainerGap(30, Short.MAX_VALUE))
                     .addGroup(maSachLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(maSachLayout.createSequentialGroup()
-                                .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(errorLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, maSachLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                                        .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(72, 72, 72))
-                            .addGroup(maSachLayout.createSequentialGroup()
-                                .addComponent(actionDauSachButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(errorLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, maSachLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                                .addComponent(submitButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(72, 72, 72))))
         );
         maSachLayout.setVerticalGroup(
             maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,8 +226,7 @@ public class FormSach  extends FormInsertUpdate {
                 .addGap(18, 18, 18)
                 .addGroup(maSachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dauSachLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dauSachComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(actionDauSachButton1))
+                    .addComponent(dauSachComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -275,10 +268,6 @@ public class FormSach  extends FormInsertUpdate {
         // TODO add your handling code here:
     }//GEN-LAST:event_modifyTabActionPerformed
 
-    private void actionDauSachButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionDauSachButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_actionDauSachButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -315,7 +304,6 @@ public class FormSach  extends FormInsertUpdate {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton actionDauSachButton1;
     public javax.swing.JComboBox<String> dauSachComboBox1;
     private javax.swing.JLabel dauSachLabel;
     private javax.swing.JLabel errorLabel1;
